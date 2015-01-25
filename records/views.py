@@ -17,15 +17,15 @@ class PatientList(ListView):
     context_object_name = 'patient_list'
 
 
-class NewPatient(CreateView):
+class CreatePatient(CreateView):
     model = Patient
-    template_name = 'records/new_patient.html'
+    template_name = 'records/create_patient.html'
     success_url = reverse_lazy('patient_list')
 
 
 class UpdatePatient(UpdateView):
     model = Patient
-    template_name = 'records/new_patient.html'
+    template_name = 'records/create_patient.html'
     success_url = reverse_lazy('patient_list')
 
 

@@ -2,13 +2,13 @@
 
 from django.conf.urls import patterns, include, url
 
-from records.views import PatientList, NewPatient, UpdatePatient, RecordsList, CreateRecord, UpdateRecord, DetailRecord
+from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, CreateRecord, UpdateRecord, DetailRecord
 
 urlpatterns = patterns('',
 
     url(r'^$', PatientList.as_view(), name='patient_list'),
 
-    url(r'^new_patient/$', NewPatient.as_view(), name='new_patient'),
+    url(r'^create_patient/$', CreatePatient.as_view(), name='create_patient'),
     url(r'^update_patient/(?P<pk>\d+)/$', UpdatePatient.as_view(), name='update_patient'),
 
     url(r'^records_list/(?P<pk>\d+)/$', RecordsList.as_view(), name='records_list'),
