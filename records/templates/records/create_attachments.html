@@ -1,0 +1,32 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1><small>Добавление файлов в карточку пациента</small> "XXX"</h1>
+            <a href="{% url 'records_list' 1 %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST">
+                {% csrf_token %}
+
+                {% bootstrap_formset form %}
+
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "ok" %} Submit
+                    </button>
+                {% endbuttons %}
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

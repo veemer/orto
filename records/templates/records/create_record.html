@@ -9,6 +9,9 @@
             <a href="{% url 'records_list' patient.id %}" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
             </a>
+            <a href="{% url 'create_attachments' patient.id %}" type="button" class="btn btn-primary">
+                Файлы <span class="glyphicon glyphicon-arrow-right"></span>
+            </a>
         </div>
     </div>
 
@@ -18,6 +21,7 @@
             <form method="POST" class="form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
+
                 {% buttons %}
                     <button type="submit" class="btn btn-primary">
                         {% bootstrap_icon "ok" %} Сохранить

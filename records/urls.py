@@ -2,7 +2,8 @@
 
 from django.conf.urls import patterns, include, url
 
-from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, CreateRecord, UpdateRecord, DetailRecord
+from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, \
+                          CreateRecord, UpdateRecord, DetailRecord, CreateAttachments
 
 urlpatterns = patterns('',
 
@@ -15,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^records_list/(?P<pk>\d+)/create/$', CreateRecord.as_view(), name='create_record'),
     url(r'^records_list/(?P<pk>\d+)/update/$', UpdateRecord.as_view(), name='update_record'),
     url(r'^records_list/(?P<pk>\d+)/detail/$', DetailRecord.as_view(), name='detail_record'),
+    url(r'^records_list/(?P<pk>\d+)/attach/$', CreateAttachments.as_view(), name='create_attachments'),
 )

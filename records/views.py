@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, get_object_or_404
+
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic.detail import DetailView
+
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.forms.formsets import formset_factory
 
-from records.models import Patient, Record
-
+from records.models import Patient, Record, Attachment
+from records.forms import AttachmentFormset
 
 class PatientList(ListView):
 
@@ -95,3 +98,8 @@ class DetailRecord(DetailView):
     model = Record
     context_object_name = 'record'
     template_name = 'records/detail_record.html'
+
+
+class CreateAttachments(FormView):
+    template_name = 'records/create_attachments.html'
+    form_class = AttachmentFormset
