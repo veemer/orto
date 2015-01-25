@@ -52,6 +52,7 @@ class Record(models.Model):
 
 class Attachment(models.Model):
 
+    doctor = models.ForeignKey(User)
     record = models.ForeignKey(Record)
     description = models.TextField()
     attachment = models.FileField()
