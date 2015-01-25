@@ -50,7 +50,13 @@
                         <td>{{ patient.phone_home }}</td>
                         <td>{{ patient.phone_mobile }}</td>
                         <td>{{ patient.organization }}</td>
-                        <td><small><a href="{% url 'records_list' patient.id %}">Записи</a> | <a href="{% url 'update_patient' patient.pk %}">Редактировать</a></small></td>
+                        <td>
+                            <small>
+                                <a href="{% url 'records_list' patient.id %}">Записи</a> |
+                                <a href="{% url 'update_patient' patient.pk %}">Редактировать</a> |
+                                <a href="{% url 'print' %}">Договор</a>
+                            </small>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
