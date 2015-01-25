@@ -1,0 +1,46 @@
+{% extends 'records/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1>Записи пациента <small>"{{ patient }}"</small></h1>
+
+            <a href="{% url 'patient_list' %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span> К списку пациентов
+            </a>
+            <a href="{% url 'create_record' patient.id %}" type="button" class="btn btn-primary">Добавить Запись</a>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Дата посещения</th>
+                        <th>Жалобы</th>
+                        <th>Объективный статус</th>
+                        <th>Локальный статус</th>
+                        <th>Диагноз</th>
+                        <th>Рекоммендации</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records_list %}
+                    <tr>
+                        <th scope="row">{{ record.visit_date }}</th>
+                        <td>{{ record.complaints|truncatechars:100 }}</td>
+                        <td>{{ record.objective_status|truncatechars:100 }}</td>
+                        <td>{{ record.local_status|truncatechars:100 }}</td>
+                        <td>{{ record.diagnosis|truncatechars:100 }}</td>
+                        <td>{{ record.recommendations|truncatechars:100 }}</td>
+                        <th>
+                            <small><a href="{% url 'detail_record' patient.id %}">Посмотреть</a></small>
+                            <small><a href="{% url 'update_record' record.pk %}">Редактировать</a></small>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

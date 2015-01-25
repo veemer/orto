@@ -1,0 +1,15 @@
+{% extends 'records/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <a href="{% url 'records_list' record.patient.id %}" type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{ record.patient }}</h3>
+            <h3>{{ record.visit_date }}</h3>
+        </div>
+    </div>
+{% endblock %}

@@ -2,12 +2,17 @@
 {% load bootstrap3 %}
 
 {% block content %}
+
     <div class="row">
+        <div class="col-md-12">
+            <h1><small>Новая запись в карточку пациента</small> "{{ patient }}"</h1>
+            <a href="{% url 'records_list' patient.id %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
+            </a>
+        </div>
+    </div>
 
-        <a href="{% url 'patient_list' %}" type="button" class="btn btn-primary">
-            <span class="glyphicon glyphicon-arrow-left"></span> К списку пациентов
-        </a>
-
+    <div class="row">
         <div class="col-md-12">
 
             <form method="POST" class="form">
