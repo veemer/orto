@@ -18,16 +18,18 @@ class Patient(models.Model):
     birth_day = models.DateField(verbose_name=u'День рождения')
     gender = models.CharField(choices=GENDER, max_length=64, verbose_name=u'Пол')
 
-    phone_home = models.CharField(max_length=64, verbose_name=u'Домашний телефон')
-    phone_mobile = models.CharField(max_length=64, verbose_name=u'Мобильный телефон')
+    phone_home = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Домашний телефон')
+    phone_mobile = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Мобильный телефон')
 
-    organization = models.CharField(max_length=128, verbose_name=u'Организация')
+    organization = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Организация')
 
-    passport_seria = models.IntegerField(verbose_name=u'Серия')
-    passport_number = models.IntegerField(verbose_name=u'Номер')
-    passport_issued_by = models.CharField(max_length=128, verbose_name=u'Кем выдан')
+    passport_seria = models.IntegerField(blank=True, null=True, verbose_name=u'Серия')
+    passport_number = models.IntegerField(blank=True, null=True, verbose_name=u'Номер')
+    passport_issued_by = models.CharField(blank=True, null=True, max_length=128, verbose_name=u'Кем выдан')
 
-    address = models.TextField(verbose_name=u'Адрес')
+    address = models.TextField(blank=True, null=True, verbose_name=u'Адрес')
+
+    created_by = models.ForeignKey(User)
 
     def __unicode__(self):
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)
@@ -45,8 +47,8 @@ class Record(models.Model):
     diagnosis = models.TextField(verbose_name=u'Диагноз')
     recommendations = models.TextField(verbose_name=u'Рекомендации')
 
-    visit_date = models.DateTimeField(verbose_name=u'Дата посещения')
-    update_date = models.DateTimeField(verbose_name=u'Дата изменения')
+    visit_date = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата посещения')
+    update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
     next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения')
 
 
