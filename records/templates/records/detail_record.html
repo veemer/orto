@@ -18,7 +18,7 @@
             <h1 class="text-center" style="margin-bottom: 50px">Медицинское заключение</h1>
 
             <p><b>Дата</b> <span class="info">{{ record.visit_date }}</span></p>
-            <p><b>ФИО Врача</b> <span class="info">{{ record.doctor }}</span></p>
+            <p><b>ФИО Врача</b> <span class="info">{{ record.doctor.first_name }} {{ record.doctor.last_name }}</span></p>
             <p><b>ФИО Пациента</b> <span class="info">{{ record.patient }}</span></p>
             <p><b>Возраст</b> ??</p>
             <p><b>Жалобы</b> <span class="info">{{ record.complaints }}</span></p>
