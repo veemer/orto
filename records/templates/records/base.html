@@ -45,6 +45,9 @@
                     </ul/>-->
 
                     <div class="navbar-form navbar-right">
+                        {% if can_print %}
+                        <a role="button" type="submit" class="btn btn-success" target="_blank" href="?print">Печать</a>
+                        {% endif %}
                         <a role="button" type="submit" class="btn btn-danger" href="{% url 'logout' %}">Выйти</a>
                     </div>
 
@@ -66,6 +69,12 @@
         <script src="/static/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+
+        {% if print %}
+        <script>window.print();</script>
+        {% endif %}
+        
+
         {% block js %}
         {% endblock %}
     </body>

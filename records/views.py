@@ -117,6 +117,15 @@ class DetailRecord(DetailView):
     context_object_name = 'record'
     template_name = 'records/detail_record.html'
 
+    def get_context_data(self, **kwargs):
+
+        context = super(DetailRecord, self).get_context_data()
+        context['can_print'] = True
+        if self.request.GET.get('print', None) is not None:
+            context['print'] = True
+
+        return context
+
 
 class CreateAttachments(FormView):
     template_name = 'records/create_attachments.html'
