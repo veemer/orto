@@ -2,24 +2,61 @@
 {% load bootstrap3 %}
 
 {% block content %}
+
     <div class="row">
 
         <a href="{% url 'patient_list' %}" type="button" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-left"></span> К списку пациентов
         </a>
+    </div>
 
-        <div class="col-md-12">
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col-md=12">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#main_info" aria-controls="main_info" role="tab" data-toggle="tab">Общая информация</a></li>
+                        <li role="presentation"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Контактная информация</a></li>
+                        <li role="presentation"><a href="#passport" aria-controls="passport" role="tab" data-toggle="tab">Паспорт</a></li>
+                    </ul>
 
-            <form method="POST" class="form">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-                {% buttons %}
-                    <button type="submit" class="btn btn-primary">
-                        {% bootstrap_icon "ok" %} Сохранить
-                    </button>
-                {% endbuttons %}
-            </form>
+                    <!-- Tab panes -->
+                    <form method="POST" class="form">
+                        <div class="tab-content">
+                            {% csrf_token %}
+                            <div role="tabpanel" class="tab-pane active" id="main_info">
+                                {% bootstrap_field form.first_name %}
+                                {% bootstrap_field form.father_name %}
+                                {% bootstrap_field form.surname %}
+                                {% bootstrap_field form.birth_day %}
+                                {% bootstrap_field form.gender %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="contacts">
+                                {% bootstrap_field form.phone_home %}
+                                {% bootstrap_field form.phone_mobile %}
+                                {% bootstrap_field form.organization %}
+                                {% bootstrap_field form.organization %}
+                                {% bootstrap_field form.address %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="passport">
+                                {% bootstrap_field form.passport_seria %}
+                                {% bootstrap_field form.passport_number %}
+                                {% bootstrap_field form.passport_issued_by %}
+                            </div>
 
+                            {% buttons %}
+                                <button type="submit" class="btn btn-primary">
+                                    {% bootstrap_icon "ok" %} Сохранить
+                                </button>
+                            {% endbuttons %}
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
+
 {% endblock %}
