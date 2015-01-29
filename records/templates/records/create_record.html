@@ -9,26 +9,48 @@
             <a href="{% url 'records_list' patient.id %}" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
             </a>
-            <a href="{% url 'create_attachments' patient.id %}" type="button" class="btn btn-primary">
-                Файлы <span class="glyphicon glyphicon-arrow-right"></span>
-            </a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col-md=12">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#complaints" aria-controls="complaints" role="tab" data-toggle="tab">Жалобы</a></li>
+                        <li role="presentation"><a href="#treatment" aria-controls="treatment" role="tab" data-toggle="tab">Лечение</a></li>
+                        <li role="presentation"><a href="#files" aria-controls="files" role="tab" data-toggle="tab">Файлы</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <form method="POST" class="form">
+                        <div class="tab-content">
+                            {% csrf_token %}
+                            <div role="tabpanel" class="tab-pane active" id="complaints">
+                                {% bootstrap_field form.complaints %}
+                                {% bootstrap_field form.objective_status %}
+                                {% bootstrap_field form.local_status %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="treatment">
+                                {% bootstrap_field form.diagnosis %}
+                                {% bootstrap_field form.recommendations %}
+                                {% bootstrap_field form.next_visit_date %}
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="files">
+                                <h1>Здесь будет управление файлами</h1>
+                            </div>
+                            {% buttons %}
+                                <button type="submit" class="btn btn-primary">
+                                    {% bootstrap_icon "ok" %} Сохранить
+                                </button>
+                            {% endbuttons %}
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-
-            <form method="POST" class="form">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-
-                {% buttons %}
-                    <button type="submit" class="btn btn-primary">
-                        {% bootstrap_icon "ok" %} Сохранить
-                    </button>
-                {% endbuttons %}
-            </form>
-
-        </div>
-    </div>
 {% endblock %}
