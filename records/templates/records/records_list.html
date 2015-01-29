@@ -33,7 +33,7 @@
                         <td>{{ record.diagnosis|truncatechars:100 }}</td>
                         <td>{{ record.recommendations|truncatechars:100 }}</td>
                         <th>
-                            <small><a href="{% url 'detail_record' patient.id %}">Посмотреть</a></small>
+                            <small><a href="{% url 'detail_record' record.id %}">Посмотреть</a></small>
                             <small><a href="{% url 'update_record' record.pk %}">Редактировать</a></small>
                         </th>
                     </tr>

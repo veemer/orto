@@ -81,15 +81,15 @@ class UpdateRecord(UpdateView):
     template_name = 'records/create_record.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.patient = get_object_or_404(Patient, pk=kwargs.get('pk'))
+        self.record = get_object_or_404(Record, pk=kwargs.get('pk'))
         return super(UpdateRecord, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse_lazy('records_list', args=(self.patient.pk,))
+        return reverse_lazy('records_list', args=(self.record.patient_pk,))
 
     def get_context_data(self, **kwargs):
         context = super(UpdateRecord, self).get_context_data(**kwargs)
-        context['patient'] = self.patient
+        context['patient'] = self.record.patient
 
         return context
 

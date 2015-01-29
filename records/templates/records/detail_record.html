@@ -1,15 +1,35 @@
 {% extends 'records/base.html' %}
 
 {% block content %}
-    <div class="row">
-        <a href="{% url 'records_list' record.patient.id %}" type="button" class="btn btn-success">
-            <span class="glyphicon glyphicon-arrow-left"></span> К записям пациента
-        </a>
-    </div>
+
     <div class="row">
         <div class="col-md-12">
-            <h3>{{ record.patient }}</h3>
-            <h3>{{ record.visit_date }}</h3>
+            <p class="text-right">
+                <b>Консультативный медицинский центр ООО «ИнтерМед-Юг»</b><br>
+                <b>Г.Ростов-на-Дону, пер.Гвардейский,7</b><br>
+                <b>8(8632)303-21-01</b><br>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1 class="text-center" style="margin-bottom: 50px">Медицинское заключение</h1>
+
+            <p><b>Дата</b> <span class="info">{{ record.visit_date }}</span></p>
+            <p><b>ФИО Врача</b> <span class="info">{{ record.doctor }}</span></p>
+            <p><b>ФИО Пациента</b> <span class="info">{{ record.patient }}</span></p>
+            <p><b>Возраст</b> ??</p>
+            <p><b>Жалобы</b> <span class="info">{{ record.complaints }}</span></p>
+            <p><b>Объективный статус</b> <span class="info">{{ record.objective_status }}</span></p>
+            <p><b>Локальный статус</b> <span class="info">{{ record.local_status }}</span></p>
+            <p><b>Данные дополнительных методов обследования</b> ??</p>
+            <p><b>Диагноз</b> <span class="info">{{ record.diagnosis }}</span></p>
+            <p><b>Рекоммендации</b> ??</p>
+            <p><b>Рекомендуемая дата следующего посещения</b> <span class="info">{{ record.next_visit_date }}</span></p>
+            <p><b>Подпись врача __________________</p>
+
         </div>
     </div>
 {% endblock %}
