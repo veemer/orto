@@ -11,7 +11,9 @@
         <title>ОртоДонт</title>
 
         <!-- Bootstrap core CSS -->
+        {% block css %}
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        {% endblock %}
 
         <!-- Custom styles for this template -->
         <link href="/static/css/starter-template.css" rel="stylesheet">
@@ -29,6 +31,7 @@
 
     <body>
 
+        {% block nav %}
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -43,6 +46,7 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+        {% endblock %}
 
         <div class="container container-main">
         {% block content %}

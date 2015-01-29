@@ -1,0 +1,28 @@
+{% extends 'records/base.html' %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="/static/css/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" class="form-signin" role="form">
+                {% csrf_token %}
+
+                <h2 class="form-signin-heading">Электронная карта "Ортодонт"</h2>
+                
+                <label for="inputEmail" class="sr-only">Логин</label>
+                <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Логин" required autofocus>
+                
+                <label for="inputPassword" class="sr-only">Пароль</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+              </form>
+        </div>
+    </div>
+{% endblock %}

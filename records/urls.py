@@ -2,13 +2,14 @@
 
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
 
 from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, \
                           CreateRecord, UpdateRecord, DetailRecord, CreateAttachments
 
 urlpatterns = patterns('',
 
-    url(r'^$', PatientList.as_view(), name='patient_list'),
+    url(r'^$', login_required(PatientList.as_view()), name='patient_list'),
 
     url(r'^create_patient/$', CreatePatient.as_view(), name='create_patient'),
     url(r'^update_patient/(?P<pk>\d+)/$', UpdatePatient.as_view(), name='update_patient'),
@@ -20,4 +21,7 @@ urlpatterns = patterns('',
     url(r'^records_list/(?P<pk>\d+)/attach/$', CreateAttachments.as_view(), name='create_attachments'),
 
     url(r'^print/$', TemplateView.as_view(template_name='records/print.html'), name='print'),
+
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'records/login.html'}),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 )
