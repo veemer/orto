@@ -11,23 +11,23 @@ GENDER = (
 
 class Patient(models.Model):
 
-    first_name = models.CharField(max_length=128)
-    father_name = models.CharField(max_length=128)
-    surname = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=128, verbose_name=u'Имя')
+    father_name = models.CharField(max_length=128, verbose_name=u'Отчество')
+    surname = models.CharField(max_length=128, verbose_name=u'Фамилия')
 
-    birth_day = models.DateField()
-    gender = models.CharField(choices=GENDER, max_length=64)
+    birth_day = models.DateField(verbose_name=u'День рождения')
+    gender = models.CharField(choices=GENDER, max_length=64, verbose_name=u'Пол')
 
-    phone_home = models.CharField(max_length=64)
-    phone_mobile = models.CharField(max_length=64)
+    phone_home = models.CharField(max_length=64, verbose_name=u'Домашний телефон')
+    phone_mobile = models.CharField(max_length=64, verbose_name=u'Мобильный телефон')
 
-    organization = models.CharField(max_length=128)
+    organization = models.CharField(max_length=128, verbose_name=u'Организация')
 
-    passport_seria = models.IntegerField()
-    passport_number = models.IntegerField()
-    passport_issued_by = models.CharField(max_length=128)
+    passport_seria = models.IntegerField(verbose_name=u'Серия')
+    passport_number = models.IntegerField(verbose_name=u'Номер')
+    passport_issued_by = models.CharField(max_length=128, verbose_name=u'Кем выдан')
 
-    address = models.TextField()
+    address = models.TextField(verbose_name=u'Адрес')
 
     def __unicode__(self):
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)
@@ -35,24 +35,24 @@ class Patient(models.Model):
 
 class Record(models.Model):
 
-    patient = models.ForeignKey(Patient)
-    doctor = models.ForeignKey(User)
+    patient = models.ForeignKey(Patient, verbose_name=u'Пациент')
+    doctor = models.ForeignKey(User, verbose_name=u'Доктор')
 
-    complaints = models.TextField()
-    objective_status = models.TextField()
-    local_status = models.TextField()
+    complaints = models.TextField(verbose_name=u'Жалобы')
+    objective_status = models.TextField(verbose_name=u'Объективный статус')
+    local_status = models.TextField(verbose_name=u'Локальный статус')
 
-    diagnosis = models.TextField()
-    recommendations = models.TextField()
+    diagnosis = models.TextField(verbose_name=u'Диагноз')
+    recommendations = models.TextField(verbose_name=u'Рекомендации')
 
-    visit_date = models.DateTimeField()
-    update_date = models.DateTimeField()
-    next_visit_date = models.DateField()
+    visit_date = models.DateTimeField(verbose_name=u'Дата посещения')
+    update_date = models.DateTimeField(verbose_name=u'Дата изменения')
+    next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения')
 
 
 class Attachment(models.Model):
 
-    doctor = models.ForeignKey(User)
-    record = models.ForeignKey(Record)
-    description = models.TextField()
-    attachment = models.FileField()
+    doctor = models.ForeignKey(User, verbose_name=u'Доктор')
+    record = models.ForeignKey(Record, verbose_name=u'Запись')
+    description = models.TextField(verbose_name=u'Описание')
+    attachment = models.FileField(verbose_name=u'Файл')
