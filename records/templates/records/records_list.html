@@ -35,7 +35,6 @@
                         <th>
                             <small><a href="{% url 'detail_record' patient.id %}">Посмотреть</a></small>
                             <small><a href="{% url 'update_record' record.pk %}">Редактировать</a></small>
-                            <small><a href="{% url 'create_attachments' record.pk %}">Добавить файлы</a></small>
                         </th>
                     </tr>
                     {% endfor %}
