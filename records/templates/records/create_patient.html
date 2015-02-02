@@ -39,14 +39,17 @@
                             <div role="tabpanel" class="tab-pane" id="contacts">
                                 {% bootstrap_field form.phone_home %}
                                 {% bootstrap_field form.phone_mobile %}
-                                {% bootstrap_field form.organization %}
+                                {% bootstrap_field form.email %}
                                 {% bootstrap_field form.organization %}
                                 {% bootstrap_field form.address %}
+                                {% bootstrap_field form.allow_contacts %}
                             </div>
                             <div role="tabpanel" class="tab-pane" id="passport">
                                 {% bootstrap_field form.passport_seria %}
                                 {% bootstrap_field form.passport_number %}
                                 {% bootstrap_field form.passport_issued_by %}
+                                <hr />
+                                {% bootstrap_field form.birth_cert_number %}
                             </div>
 
                             {% buttons %}
