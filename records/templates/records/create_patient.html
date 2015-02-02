@@ -30,9 +30,9 @@
                         <div class="tab-content">
                             {% csrf_token %}
                             <div role="tabpanel" class="tab-pane active" id="main_info">
+                                {% bootstrap_field form.surname %}
                                 {% bootstrap_field form.first_name %}
                                 {% bootstrap_field form.father_name %}
-                                {% bootstrap_field form.surname %}
                                 {% bootstrap_field form.birth_day %}
                                 {% bootstrap_field form.gender %}
                             </div>
