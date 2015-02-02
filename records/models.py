@@ -8,6 +8,11 @@ GENDER = (
         (u'w', u'Женский')
 )
 
+PATIENT_STATUS = (
+    (u'red', u'red'),
+    (u'green', u'green'),
+    (u'yellow', u'yellow')
+)
 
 class Patient(models.Model):
 
@@ -33,6 +38,8 @@ class Patient(models.Model):
     birth_cert_number = models.CharField(blank=True, null=True, max_length=128, verbose_name=u'Номер свидетельства о рождении')
 
     address = models.TextField(blank=True, null=True, verbose_name=u'Адрес')
+
+    status = models.CharField(max_length=128, choices=PATIENT_STATUS, default='green')
 
     created_by = models.ForeignKey(User)
 
