@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, \
                           CreateRecord, UpdateRecord, DetailRecord, CreateAttachments
 
+from records.api import FileUploadView
+
 urlpatterns = patterns('',
 
     url(r'^$', login_required(PatientList.as_view()), name='patient_list'),
@@ -24,4 +26,6 @@ urlpatterns = patterns('',
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'records/login.html'}),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
+
+    url(r'^api/upload$', FileUploadView.as_view(), name='upload'),
 )
