@@ -22,6 +22,25 @@ class PatientList(ListView):
     template = 'records/patient_list.html'
     context_object_name = 'patient_list'
 
+    def get_queryset(self):
+
+        qs = super(PatientList, self).get_queryset()
+
+        q = self.request.GET.get('q')
+        if q:
+            qs = qs.filter(surname__icontains=q)
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+
+        context = super(PatientList, self).get_context_data(**kwargs)
+
+        q = self.request.GET.get('q')
+        if q:
+            context['q'] = q
+
+        return context
 
 class CreatePatient(CreateView):
     form_class = PatientForm

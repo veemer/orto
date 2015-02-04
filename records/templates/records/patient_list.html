@@ -10,15 +10,19 @@
 
     <div class="row">
         <div class="col-md-3">
-            <form method="POST" action="?" class="form-inline">
-                {% csrf_token %}
+            <form method="GET" action="?" class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Поиск...">
+                        <input type="text" name="q" value="{{q}}" class="form-control" placeholder="Поиск...">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-default">
                                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                             </button>
+                            {% if q %}
+                                <a class="btn btn-default" href="{% url 'patient_list' %}">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </a>
+                            {% endif %}
                         </span>
                     </div>
                 </div>
@@ -31,45 +35,51 @@
 
     <div class="row">
         <div class="col-md-12">
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Фамилия</th>
-                        <th>Имя</th>
-                        <th>Отчество</th>
-                        <th>Дата рождения</th>
-                        <th>Рабочий телефон</th>
-                        <th>Домашний телефон</th>
-                        <th>Статус</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for patient in patient_list %}
-                    <tr>
-                        <th scope="row"><a href="{% url 'records_list' patient.id %}">{{ patient.id }}</a></th>
-                        <td>{{ patient.surname }}</td>
-                        <td>{{ patient.first_name }}</td>
-                        <td>{{ patient.father_name }}</td>
-                        <td>{{ patient.birth_day }}</td>
-                        <td>{{ patient.phone_home }}</td>
-                        <td>{{ patient.phone_mobile }}</td>
-                        <td>
-                            <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span>
-                        </td>
-                        <td>
-                            <small>
-                                <a href="{% url 'records_list' patient.id %}">Записи</a> |
-                                <a href="{% url 'update_patient' patient.pk %}">Редактировать</a> |
-                                <a href="{% url 'print' %}">Договор</a>
-                            </small>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% if patient_list %}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Фамилия</th>
+                            <th>Имя</th>
+                            <th>Отчество</th>
+                            <th>Дата рождения</th>
+                            <th>Рабочий телефон</th>
+                            <th>Домашний телефон</th>
+                            <th>Статус</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for patient in patient_list %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'records_list' patient.id %}">{{ patient.id }}</a></th>
+                            <td>{{ patient.surname }}</td>
+                            <td>{{ patient.first_name }}</td>
+                            <td>{{ patient.father_name }}</td>
+                            <td>{{ patient.birth_day }}</td>
+                            <td>{{ patient.phone_home }}</td>
+                            <td>{{ patient.phone_mobile }}</td>
+                            <td>
+                                <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span>
+                            </td>
+                            <td>
+                                <small>
+                                    <a href="{% url 'records_list' patient.id %}">Записи</a> |
+                                    <a href="{% url 'update_patient' patient.pk %}">Редактировать</a> |
+                                    <a href="{% url 'print' %}">Договор</a>
+                                </small>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="jumbotron" style="margin-top: 20px">
+                    <h2 class="text-center">По запросу <b>"{{ q }}"</b> ничего не найдено</h2>
+                    <p class="text-center"><a href="{% url 'patient_list' %}">Все пациенты</a></p>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
