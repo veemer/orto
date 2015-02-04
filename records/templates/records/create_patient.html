@@ -26,7 +26,7 @@
                     </ul>
 
                     <!-- Tab panes -->
-                    <form method="POST" class="form">
+                    <form method="POST" action="?" class="form">
                         <div class="tab-content">
                             {% csrf_token %}
                             <div role="tabpanel" class="tab-pane active" id="main_info">
@@ -35,7 +35,28 @@
                                 {% bootstrap_field form.father_name %}
                                 {% bootstrap_field form.birth_day %}
                                 {% bootstrap_field form.gender %}
-                                {% bootstrap_field form.status %}
+                                <!--{% bootstrap_field form.status %}-->
+                                <div class="form-group" data-ng-controller="StatusCtrl" data-ng-init="init('{{ form.status.value }}')">
+                                    <label class="control-label">Статус</label><br />
+
+                                    <span class="glyphicon glyphicon-user status status-green" 
+                                          aria-hidden="true"
+                                          data-ng-click="setStatus('green')"
+                                          data-ng-class="{'status-green-active': isActive('green')}"></span>
+
+                                    <span class="glyphicon glyphicon-user status status-yellow"
+                                          aria-hidden="true"
+                                          data-ng-click="setStatus('yellow')"
+                                          data-ng-class="{'status-yellow-active': isActive('yellow')}"></span>
+
+                                    <span class="glyphicon glyphicon-user status status-red" 
+                                          aria-hidden="true"
+                                          data-ng-click="setStatus('red')"
+                                          data-ng-class="{'status-red-active': isActive('red')}"></span>
+
+                                    <input name="{{ form.status.html_name }}" type="hidden" data-ng-value="status" />
+                                </div>
+
                             </div>
                             <div role="tabpanel" class="tab-pane" id="contacts">
                                 {% bootstrap_field form.phone_home %}

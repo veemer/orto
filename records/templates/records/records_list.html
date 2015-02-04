@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h1>Записи пациента <small>"{{ patient }}"</small></h1>
+            <h1>Записи пациента <small>"{{ patient }}" <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span></small></h1>
 
             <a href="{% url 'patient_list' %}" type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-arrow-left"></span> К списку пациентов

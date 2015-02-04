@@ -10,3 +10,37 @@ span.info {
     text-decoration: underline;
     font-size: 16px;
 }
+
+span.status {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+span.status-red {
+    color: #d9534f;
+}
+
+span.status-green {
+    color: #5cb85c;
+}
+
+span.status-yellow {
+    color: #f0ad4e;
+}
+
+
+span.status-red:hover, span.status-red-active {
+    color: #fff;
+    background-color: #d9534f;
+}
+
+span.status-green:hover, span.status-green-active {
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+span.status-yellow:hover, span.status-yellow-active {
+    color: #fff;
+    background-color: #f0ad4e;
+}
