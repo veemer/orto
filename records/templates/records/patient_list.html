@@ -1,5 +1,7 @@
 {% extends 'records/base.html' %}
 
+{% load bootstrap3 %}
+
 {% block content %}
 
     <div class="row">
@@ -74,6 +76,7 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                {% bootstrap_pagination page_obj %}
             {% else %}
                 <div class="jumbotron" style="margin-top: 20px">
                     <h2 class="text-center">По запросу <b>"{{ q }}"</b> ничего не найдено</h2>

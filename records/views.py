@@ -18,7 +18,7 @@ from records.forms import AttachmentFormset, PatientForm, RecordForm
 class PatientList(ListView):
 
     model = Patient
-    paginate_by = 100
+    paginate_by = 10
     template = 'records/patient_list.html'
     context_object_name = 'patient_list'
 
