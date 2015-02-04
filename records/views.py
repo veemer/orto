@@ -64,7 +64,7 @@ class UpdatePatient(UpdateView):
 class RecordsList(ListView):
 
     model = Record
-    paginate_by = 100
+    paginate_by = 10
     template_name = 'records/records_list.html'
     context_object_name = 'records_list'
 

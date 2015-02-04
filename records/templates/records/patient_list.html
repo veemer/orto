@@ -1,5 +1,4 @@
 {% extends 'records/base.html' %}
-
 {% load bootstrap3 %}
 
 {% block content %}
@@ -76,7 +75,9 @@
                     {% endfor %}
                     </tbody>
                 </table>
-                {% bootstrap_pagination page_obj %}
+                {% if paginator.num_pages > 1 %}
+                    {% bootstrap_pagination page_obj %}
+                {% endif %}
             {% else %}
                 <div class="jumbotron" style="margin-top: 20px">
                     <h2 class="text-center">По запросу <b>"{{ q }}"</b> ничего не найдено</h2>
