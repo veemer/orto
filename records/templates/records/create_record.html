@@ -41,14 +41,48 @@
                                 {% bootstrap_field form.recommendations %}
                                 {% bootstrap_field form.next_visit_date %}
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="files" 
+                            <div role="tabpanel" class="tab-pane" id="files"
                                  data-ng-controller="FileUploadCtrl" data-ng-init="init({{ record.id }})">
+
+                                <h3>Плантограмма</h3>
+
+                                <div class="row">
+                                    <div class="col-md-6" data-ng-repeat="plano in plano_attachments">
+                                        <div class="thumbnail">
+                                          <img width="128px" data-ng-src="{[{plano.attachment}]}" alt="...">
+                                          <div class="caption">
+                                            <h3>{[{ plano.description }]}</h3>
+                                            <p>...</p>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="button" 
+                                        class="btn btn-default"
+                                        ng-file-select ng-model="planoFiles">
+                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                </button>
+
+                                <input type="text" data-ng-model="planoDescr">
+                                <button type="button" class="btn btn-default" data-ng-click="savePlan()">Save</button>
+
+                                <h3>Топограмма</h3>
                                 <button type="button" 
                                         class="btn btn-default" 
                                         aria-label="Left Align"
-                                        ng-file-select ng-model="files">
+                                        ng-file-select ng-model="topo">
                                     Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
                                 </button>
+
+                                <h3>R-снимки</h3>
+                                <button type="button" 
+                                        class="btn btn-default" 
+                                        aria-label="Left Align"
+                                        ng-file-select ng-model="R">
+                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                </button>
+
                             </div>
                             {% buttons %}
                                 <button type="submit" class="btn btn-primary">
