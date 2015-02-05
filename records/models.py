@@ -64,6 +64,9 @@ class Record(models.Model):
     update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
     next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True)
 
+    class Meta:
+        ordering = ['-id']
+
     def __unicode__(self):
 
         return u'{} - {}'.format(self.patient, self.visit_date)
