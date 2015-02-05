@@ -1,10 +1,13 @@
 var app = angular.module('orto', ['angularFileUpload']);
 
 
-app.config(['$httpProvider', function($httpProvider) {
+app.config(['$httpProvider', '$interpolateProvider', function($httpProvider, $interpolateProvider) {
 
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
 
 }]);
 
@@ -32,16 +35,26 @@ app.controller('FileUploadCtrl', [
     function($scope, $upload) {
 
         $scope.record_id = null;
+        $scope.planoDescr = '';
+
+        $scope.plano_attachments = [];
 
         $scope.init = function(record_id) {
             $scope.record_id = record_id;
         }
 
-        $scope.$watch('files', function () {
+        /*$scope.$watch('files', function () {
             $scope.upload($scope.files);
-        });
+        });*/
 
-        $scope.upload = function (files) {
+        $scope.savePlan = function() {
+            $scope.upload($scope.planoFiles, $scope.planoDescr, function(data) {
+                $scope.plano_attachments.push(data.attachment);
+                $scope.planoDescr = '';
+            })
+        }
+
+        $scope.upload = function (files, description, cb) {
 
             var url = '/api/records/'+$scope.record_id+'/attachments';
 
@@ -50,7 +63,7 @@ app.controller('FileUploadCtrl', [
                     var file = files[i];
                     $upload.upload({
                         url: url,
-                        fields: {'username': 'username'},
+                        fields: {'description': description},
                         file: file,
                         fileFormDataName: 'attachment',
                     }).progress(function (evt) {
@@ -58,6 +71,7 @@ app.controller('FileUploadCtrl', [
                         console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
                     }).success(function (data, status, headers, config) {
                         console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                        cb(data);
                     });
                 }
             }
