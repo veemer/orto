@@ -24,13 +24,7 @@ class AttachmentsApiView(APIView):
             record = get_object_or_404(Record, pk=record_pk)
             attachment = serializer.save(doctor=request.user, record=record)
 
-            data = {
-                'attachment': {
-                    'id': attachment.id,
-                    'url': attachment.attachment.url,
-                    'description': attachment.description
-                }
-            }
+            data = {'attachment': serializer.data}
             return Response(data, status=200)
         
         else:
