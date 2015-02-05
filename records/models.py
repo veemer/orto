@@ -53,16 +53,16 @@ class Record(models.Model):
     patient = models.ForeignKey(Patient, verbose_name=u'Пациент')
     doctor = models.ForeignKey(User, verbose_name=u'Доктор')
 
-    complaints = models.TextField(verbose_name=u'Жалобы')
-    objective_status = models.TextField(verbose_name=u'Объективный статус')
-    local_status = models.TextField(verbose_name=u'Локальный статус')
+    complaints = models.TextField(verbose_name=u'Жалобы', blank=True, null=True)
+    objective_status = models.TextField(verbose_name=u'Объективный статус', blank=True, null=True)
+    local_status = models.TextField(verbose_name=u'Локальный статус', blank=True, null=True)
 
-    diagnosis = models.TextField(verbose_name=u'Диагноз')
-    recommendations = models.TextField(verbose_name=u'Рекомендации')
+    diagnosis = models.TextField(verbose_name=u'Диагноз', blank=True, null=True)
+    recommendations = models.TextField(verbose_name=u'Рекомендации', blank=True, null=True)
 
     visit_date = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата посещения')
     update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
-    next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения')
+    next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True)
 
     def __unicode__(self):
 
