@@ -68,5 +68,5 @@ class Attachment(models.Model):
 
     doctor = models.ForeignKey(User, verbose_name=u'Доктор')
     record = models.ForeignKey(Record, verbose_name=u'Запись')
-    description = models.TextField(verbose_name=u'Описание')
-    attachment = models.FileField(verbose_name=u'Файл')
+    description = models.TextField(verbose_name=u'Описание', blank=True, null=True)
+    attachment = models.ImageField(verbose_name=u'Файл', upload_to='attachments/%Y/%m/%d')
