@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
@@ -7,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, \
                           CreateRecord, UpdateRecord, DetailRecord, CreateAttachments
 
-from records.api import FileUploadView
+from records.api import AttachmentsApiView
 
 urlpatterns = patterns('',
 
@@ -27,5 +28,10 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'records/login.html'}),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 
-    url(r'^api/upload$', FileUploadView.as_view(), name='upload'),
+    url(r'^api/records/(?P<record_pk>\d+)/attachments$', AttachmentsApiView.as_view(), name='upload'),
+
 )
+
+urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT}))
