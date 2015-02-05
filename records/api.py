@@ -14,6 +14,14 @@ class AttachmentsApiView(APIView):
 
     parser_classes = (FileUploadParser,)
 
+    def get(self, request, **kwargs):
+
+        record_pk = kwargs.get('record_pk')
+        attachments = Attachment.objects.filter(record_id=record_pk)
+        serialized = AttachmentSerializer(attachments, many=True)
+
+        return Response(serialized.data, status=200)
+
     def post(self, request, **kwargs):
 
         serializer = AttachmentSerializer(data=request.data)
