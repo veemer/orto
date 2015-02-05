@@ -44,6 +44,7 @@ class Patient(models.Model):
     created_by = models.ForeignKey(User)
 
     def __unicode__(self):
+
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)
 
 
@@ -63,6 +64,10 @@ class Record(models.Model):
     update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
     next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения')
 
+    def __unicode__(self):
+
+        return u'{} - {}'.format(self.patient, self.visit_date)
+
 
 class Attachment(models.Model):
 
@@ -70,3 +75,7 @@ class Attachment(models.Model):
     record = models.ForeignKey(Record, verbose_name=u'Запись')
     description = models.TextField(verbose_name=u'Описание', blank=True, null=True)
     attachment = models.ImageField(verbose_name=u'Файл', upload_to='attachments/%Y/%m/%d')
+
+    def __unicode__(self):
+
+        return u'{} - {}'.format(self.record, self.attachment.name)
