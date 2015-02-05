@@ -41,8 +41,14 @@
                                 {% bootstrap_field form.recommendations %}
                                 {% bootstrap_field form.next_visit_date %}
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="files">
-                                <h1>Здесь будет управление файлами</h1>
+                            <div role="tabpanel" class="tab-pane" id="files" 
+                                 data-ng-controller="FileUploadCtrl" data-ng-init="init({{ record.id }})">
+                                <button type="button" 
+                                        class="btn btn-default" 
+                                        aria-label="Left Align"
+                                        ng-file-select ng-model="files">
+                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                                </button>
                             </div>
                             {% buttons %}
                                 <button type="submit" class="btn btn-primary">

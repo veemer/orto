@@ -126,6 +126,7 @@ class UpdateRecord(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UpdateRecord, self).get_context_data(**kwargs)
+        context['record'] = self.record
         context['patient'] = self.record.patient
 
         return context
