@@ -82,24 +82,33 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="files">
+                                <div class="row">
 
-                                <h3>Планограмма</h3>
-                                <div data-file-manager data-record="record" 
-                                     data-attachments="planogramm_attachments"
-                                     data-patient="{{ patient.id }}"
-                                     data-attachment-type="AttachmentType.planogramm"></div>
+                                    <div class="col-md-4">
+                                        <h3>Планограмма</h3>
+                                        <div data-file-manager data-record="record" 
+                                             data-attachments="planogramm_attachments"
+                                             data-patient="{{ patient.id }}"
+                                             data-attachment-type="AttachmentType.planogramm"></div>
 
-                                <h3>Топограмма</h3>
-                                <div data-file-manager data-record="record" 
-                                     data-attachments="topogramm_attachments"
-                                     data-patient="{{ patient.id }}"
-                                     data-attachment-type="AttachmentType.topogramm"></div>
+                                    </div>
 
-                                <h3>R-снимки</h3>
-                                <div data-file-manager data-record="record" 
-                                     data-attachments="R_attachments"
-                                     data-patient="{{ patient.id }}"
-                                     data-attachment-type="AttachmentType.R"></div>
+                                    <div class="col-md-4">
+                                        <h3>Топограмма</h3>
+                                        <div data-file-manager data-record="record" 
+                                             data-attachments="topogramm_attachments"
+                                             data-patient="{{ patient.id }}"
+                                             data-attachment-type="AttachmentType.topogramm"></div>
+                                        
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h3>R-снимки</h3>
+                                        <div data-file-manager data-record="record" 
+                                             data-attachments="R_attachments"
+                                             data-patient="{{ patient.id }}"
+                                             data-attachment-type="AttachmentType.R"></div>
+                                    </div>
+                                </div>
 
                             </div>
                             {% buttons %}
