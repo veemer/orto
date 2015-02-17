@@ -14,6 +14,13 @@ PATIENT_STATUS = (
     (u'yellow', u'yellow')
 )
 
+ATTACHMENT_TYPE = (
+    (u'planogramm', u'planogramm'),
+    (u'topogramm', u'topogramm'),
+    (u'R', u'R')
+)
+
+
 class Patient(models.Model):
 
     first_name = models.CharField(max_length=128, verbose_name=u'Имя')
@@ -78,6 +85,7 @@ class Attachment(models.Model):
     record = models.ForeignKey(Record, verbose_name=u'Запись')
     description = models.TextField(verbose_name=u'Описание', blank=True, null=True)
     attachment = models.ImageField(verbose_name=u'Файл', upload_to='attachments/%Y/%m/%d')
+    attachment_type = models.CharField(max_length=64, choices=ATTACHMENT_TYPE, verbose_name=u'Тип')
 
     def __unicode__(self):
 
