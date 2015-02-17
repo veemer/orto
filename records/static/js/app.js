@@ -91,16 +91,32 @@ app.controller('FileUploadCtrl', [
 
 
 app.controller('RecordCtrl', [
-    '$scope', 'Record',
-    function($scope, Record) {
+    '$scope', '$location', 'Record',
+    function($scope, $location, Record) {
 
         $scope.record = {}
 
         $scope.save = function() {
-            console.log($scope.record);
-            Record.save({}, $scope.record, function(data) {
+
+            var params = {}
+            if($scope.record.id) {
+                params.id = $scope.record.id;
+            }
+
+            Record.save(params, $scope.record, function(data) {
                 console.log(data);
+                $scope.record.id = data.record.id;
             });
+        }
+
+        $scope.load = function(recordId) {
+
+            if(recordId) {
+                Record.get({'id': recordId}, function(data) {
+                    $scope.record = data.record;
+                })
+            }
+
         }
 
     }
