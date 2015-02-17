@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from records.serializers import AttachmentSerializer, RecordSerializer
-from records.models import Record, Attachment
+from records.models import Record, Attachment, Patient
 
 
 class AttachmentsApiView(APIView):
@@ -30,10 +30,18 @@ class AttachmentsApiView(APIView):
         if serializer.is_valid():
 
             record_pk = kwargs.get('record_pk')
-            record = get_object_or_404(Record, pk=record_pk)
+            if record_pk:
+                record = get_object_or_404(Record, pk=record_pk)
+            else:
+                patient_id = request.POST.get('patient_id')
+                patient = get_object_or_404(Patient, id=patient_id)
+                record = Record.objects.create(doctor=request.user, patient=patient)
+
             attachment = serializer.save(doctor=request.user, record=record)
 
-            data = {'attachment': serializer.data}
+            record = RecordSerializer(record)
+
+            data = {'attachment': serializer.data, 'record': record.data}
             return Response(data, status=status.HTTP_200_OK)
         
         else:
