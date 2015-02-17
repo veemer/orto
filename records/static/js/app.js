@@ -35,9 +35,10 @@ app.service('Attachments', ['$resource', function($resource) {
 // directives
 app.directive('fileManager', function() {
 
-    function controller($scope, $upload) {
+    function controller($scope, $upload, $timeout) {
 
         $scope.description = '';
+        $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
 
         $scope.save = function() {
 
@@ -64,6 +65,22 @@ app.directive('fileManager', function() {
             }
         }
 
+        $scope.generateThumb = function(file) {
+            if (file != null) {
+                if ($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
+                    $timeout(function() {
+                        var fileReader = new FileReader();
+                        fileReader.readAsDataURL(file);
+                        fileReader.onload = function(e) {
+                            $timeout(function() {
+                                file.dataUrl = e.target.result;
+                            });
+                        }
+                    });
+                }
+            }
+        }
+
         $scope.getUrl = function() {
 
             var url;
@@ -78,11 +95,21 @@ app.directive('fileManager', function() {
             return url;
         }
 
+        $scope.$watch('files', function(files) {
+            if (files != null) {
+                for (var i = 0; i < files.length; i++) {
+                    (function(file) {
+                        $scope.generateThumb(file);
+                    })(files[i]);
+                }
+            }
+        });
+
     }
 
     return {
         templateUrl: '/static/partials/file-manager.html',
-        controller: ['$scope', '$upload', controller],
+        controller: ['$scope', '$upload', '$timeout', controller],
         require: 'ngModel',
         scope: {
             record: '=',
