@@ -13,10 +13,22 @@ app.config(['$httpProvider', '$interpolateProvider', function($httpProvider, $in
 }]);
 
 
+// constants
+
+app.constant('AttachmentType', {
+    planogramm: 'planogramm',
+    topogramm: 'topogramm',
+    R: 'R'
+});
+
 // services
 
 app.service('Record', ['$resource', function($resource) {
     return $resource('/api/records/:id');
+}]);
+
+app.service('Attachments', ['$resource', function($resource) {
+    return $resource('/api/records/:id/attachments');
 }]);
 
 
@@ -35,7 +47,11 @@ app.directive('fileManager', function() {
 
                 $upload.upload({
                     url: $scope.getUrl(),
-                    fields: {'description': $scope.description, 'patient_id': $scope.patient},
+                    fields: {
+                        'description': $scope.description,
+                        'patient_id': $scope.patient,
+                        'attachment_type': $scope.attachmentType
+                    },
                     file: file,
                     fileFormDataName: 'attachment'
                 }).success(function(data, status, headers, config) {
@@ -71,6 +87,7 @@ app.directive('fileManager', function() {
         scope: {
             record: '=',
             attachments: '=',
+            attachmentType: '=',
             patient: '=',
         }
     }
@@ -97,8 +114,10 @@ app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
 
 
 app.controller('RecordCtrl', [
-    '$scope', '$location', 'Record',
-    function($scope, $location, Record) {
+    '$scope', '$location', 'Record', 'Attachments', 'AttachmentType',
+    function($scope, $location, Record, Attachments, AttachmentType) {
+
+        $scope.AttachmentType = AttachmentType;
 
         $scope.record = {}
 
@@ -119,7 +138,7 @@ app.controller('RecordCtrl', [
             });
         }
 
-        $scope.load = function(recordId) {
+        $scope.loadRecord = function(recordId) {
 
             if(recordId) {
                 Record.get({'id': recordId}, function(data) {
@@ -127,6 +146,37 @@ app.controller('RecordCtrl', [
                 })
             }
 
+        }
+
+        $scope.loadAttachments = function(recordId) {
+
+            if(recordId) {
+
+                Attachments.get({'id': recordId}, function(data) {
+
+                    data.attachments.forEach(function(attachment) {
+
+                        if(attachment.attachment_type == AttachmentType.planogramm) {
+                            $scope.planogramm_attachments.push(attachment);
+                        }
+                        else if(attachment.attachment_type == AttachmentType.topogramm) {
+                            $scope.topogramm_attachments.push(attachment);
+                        }
+                        else if(attachment.attachment_type == AttachmentType.R) {
+                            $scope.R_attachments.push(attachment);
+                        }
+
+                    });
+
+                })
+
+            }
+
+        }
+
+        $scope.load = function(recordId) {
+            $scope.loadRecord(recordId);
+            $scope.loadAttachments(recordId);
         }
 
     }
