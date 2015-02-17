@@ -25,7 +25,6 @@ app.service('Record', ['$resource', function($resource) {
 app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
 
     $scope.init = function(status) {
-        console.log(status);
         $scope.status = status;
     }
 
@@ -99,12 +98,12 @@ app.controller('RecordCtrl', [
         $scope.save = function() {
 
             var params = {}
+
             if($scope.record.id) {
                 params.id = $scope.record.id;
             }
 
             Record.save(params, $scope.record, function(data) {
-                console.log(data);
                 $scope.record.id = data.record.id;
             });
         }
