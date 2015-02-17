@@ -5,10 +5,10 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 
-from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, \
-                          CreateRecord, UpdateRecord, DetailRecord, CreateAttachments
+from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, CreateRecord, \
+                          UpdateRecord, DetailRecord, CreateAttachments
 
-from records.api import AttachmentsApiView
+from records.api import AttachmentsApiView, RecordsApiView
 
 urlpatterns = patterns('',
 
@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 
     url(r'^api/records/(?P<record_pk>\d+)/attachments$', AttachmentsApiView.as_view(), name='upload'),
+    url(r'^api/records/(?P<record_pk>\d+)$', RecordsApiView.as_view(), name='records'),
+    url(r'^api/records$', RecordsApiView.as_view(), name='records'),
 
 )
 
