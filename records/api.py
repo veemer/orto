@@ -46,12 +46,28 @@ class AttachmentsApiView(APIView):
 
 class RecordsApiView(APIView):
 
+    def get(self, request, **kwargs):
+
+        record_pk = self.kwargs.get('record_pk')
+        record = get_object_or_404(Record, id=record_pk)
+        serialized = RecordSerializer(record)
+
+        return Response({'record': serialized.data}, status=status.HTTP_200_OK)
+
     def post(self, request, **kwargs):
 
-        serializer = RecordSerializer(data=request.data)
+        record_pk = self.kwargs.get('record_pk')
+
+        if record_pk is not None:
+            record = get_object_or_404(Record, id=record_pk)
+            serializer = RecordSerializer(record, data=request.data)
+        else:
+            serializer = RecordSerializer(data=request.data)
 
         if serializer.is_valid():
+
             serializer.save()
+
             return Response({'record': serializer.data}, status=status.HTTP_200_OK)
 
         else:
