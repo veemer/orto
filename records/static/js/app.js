@@ -1,5 +1,6 @@
-var app = angular.module('orto', ['angularFileUpload']);
+var app = angular.module('orto', ['angularFileUpload', 'ngResource']);
 
+// base config
 
 app.config(['$httpProvider', '$interpolateProvider', function($httpProvider, $interpolateProvider) {
 
@@ -11,6 +12,15 @@ app.config(['$httpProvider', '$interpolateProvider', function($httpProvider, $in
 
 }]);
 
+
+// services
+
+app.service('Record', ['$resource', function($resource) {
+    return $resource('/api/records/:id');
+}]);
+
+
+// controllers
 
 app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
 
@@ -76,5 +86,22 @@ app.controller('FileUploadCtrl', [
                 }
             }
         };
+    }
+]);
+
+
+app.controller('RecordCtrl', [
+    '$scope', 'Record',
+    function($scope, Record) {
+
+        $scope.record = {}
+
+        $scope.save = function() {
+            console.log($scope.record);
+            Record.save({}, $scope.record, function(data) {
+                console.log(data);
+            });
+        }
+
     }
 ]);
