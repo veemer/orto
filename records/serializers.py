@@ -9,7 +9,7 @@ class AttachmentSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Attachment
-        fields = ['description', 'attachment', 'id']
+        fields = ['description', 'attachment', 'attachment_type', 'id']
 
 
 class RecordSerializer(serializers.ModelSerializer):
