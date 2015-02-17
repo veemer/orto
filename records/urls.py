@@ -28,7 +28,11 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'records/login.html'}),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 
+    # api views
+
     url(r'^api/records/(?P<record_pk>\d+)/attachments$', AttachmentsApiView.as_view(), name='upload'),
+    url(r'^api/records/attachments$', AttachmentsApiView.as_view(), name='upload'),
+
     url(r'^api/records/(?P<record_pk>\d+)$', RecordsApiView.as_view(), name='records'),
     url(r'^api/records$', RecordsApiView.as_view(), name='records'),
 
