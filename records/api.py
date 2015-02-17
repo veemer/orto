@@ -18,10 +18,12 @@ class AttachmentsApiView(APIView):
     def get(self, request, **kwargs):
 
         record_pk = kwargs.get('record_pk')
-        attachments = Attachment.objects.filter(record_id=record_pk)
+        record = get_object_or_404(Record, id=record_pk)
+
+        attachments = Attachment.objects.filter(record=record)
         serialized = AttachmentSerializer(attachments, many=True)
 
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        return Response({'attachments': serialized.data}, status=status.HTTP_200_OK)
 
     def post(self, request, **kwargs):
 
