@@ -85,15 +85,21 @@
 
                                 <h3>Планограмма</h3>
                                 <div data-file-manager data-record="record" 
-                                     data-attachments="planogramm_attachments" data-patient="{{ patient.id }}"></div>
+                                     data-attachments="planogramm_attachments"
+                                     data-patient="{{ patient.id }}"
+                                     data-attachment-type="AttachmentType.planogramm"></div>
 
                                 <h3>Топограмма</h3>
                                 <div data-file-manager data-record="record" 
-                                     data-attachments="topogramm_attachments" data-patient="{{ patient.id }}"></div>
+                                     data-attachments="topogramm_attachments"
+                                     data-patient="{{ patient.id }}"
+                                     data-attachment-type="AttachmentType.topogramm"></div>
 
                                 <h3>R-снимки</h3>
                                 <div data-file-manager data-record="record" 
-                                     data-attachments="R_attachments" data-patient="{{ patient.id }}"></div>
+                                     data-attachments="R_attachments"
+                                     data-patient="{{ patient.id }}"
+                                     data-attachment-type="AttachmentType.R"></div>
 
                             </div>
                             {% buttons %}
