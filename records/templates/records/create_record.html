@@ -19,7 +19,8 @@
     <div class="container">
         <div class="row" style="margin-top:20px">
             <div class="col-md=12">
-                <div role="tabpanel">
+                <div role="tabpanel" data-ng-controller="RecordCtrl"
+                     data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#complaints" aria-controls="complaints" role="tab" data-toggle="tab">Жалобы</a></li>
@@ -28,18 +29,56 @@
                     </ul>
 
                     <!-- Tab panes -->
-                    <form method="POST" action="?" class="form">
+                    <form class="form">
                         <div class="tab-content">
                             {% csrf_token %}
                             <div role="tabpanel" class="tab-pane active" id="complaints">
-                                {% bootstrap_field form.complaints %}
-                                {% bootstrap_field form.objective_status %}
-                                {% bootstrap_field form.local_status %}
+
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.complaints.id_for_label }}">Жалобы</label>
+                                    <textarea class="form-control" cols="40" id="{{ form.complaints.id_for_label }}"
+                                              name="{{ form.complaints.html_name }}" placeholder="Жалобы" rows="10"
+                                              title="" data-ng-model="record.{{ form.complaints.html_name }}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.objective_status.id_for_label }}">Объективный статус</label>
+                                    <textarea class="form-control" cols="40" id="{{ form.objective_status.id_for_label }}"
+                                              name="{{ form.objective_status.html_name }}" placeholder="Объективный статус" 
+                                              rows="10" title="" data-ng-model="record.{{ form.objective_status.html_name }}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.local_status.id_for_label }}">Локальный статус</label>
+                                    <textarea class="form-control" cols="40" id="{{ form.local_status.id_for_label }}"
+                                              name="{{ form.local_status.html_name }}" placeholder="Локальный статус"
+                                              rows="10" title="" data-ng-model="record.{{ form.local_status.html_name }}"></textarea>
+                                </div>
+
                             </div>
                             <div role="tabpanel" class="tab-pane" id="treatment">
-                                {% bootstrap_field form.diagnosis %}
-                                {% bootstrap_field form.recommendations %}
-                                {% bootstrap_field form.next_visit_date %}
+                                <!--{% bootstrap_field form.diagnosis %}-->
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.diagnosis.id_for_label }}">Диагноз</label>
+                                    <textarea class="form-control" cols="40" id="{{ form.diagnosis.id_for_label }}" 
+                                              name="{{ form.diagnosis.html_name }}" placeholder="Диагноз"
+                                              rows="10" title="" data-ng-model="record.{{ form.diagnosis.html_name }}"></textarea>
+                                </div>
+                                
+                                <!--{% bootstrap_field form.recommendations %}-->
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.recommendations.id_for_label }}">Рекомендации</label>
+                                    <textarea class="form-control" cols="40" id="{{ form.recommendations.id_for_label }}"
+                                              name="recommendations" placeholder="Рекомендации"
+                                              rows="10" title="" data-ng-model="record.{{ form.recommendations.html_name }}"></textarea></div>
+                                
+                                <!--{% bootstrap_field form.next_visit_date %}-->
+                                <div class="form-group">
+                                    <label class="control-label" for="{{ form.next_visit_date.id_for_label }}">Рекомендуемая дата посещения</label>
+                                    <input class="form-control" id="{{ form.next_visit_date.id_for_label }}"
+                                           name="next_visit_date" placeholder="Рекомендуемая дата посещения"
+                                           title="" type="text" data-ng-model="record.{{ form.next_visit_date.html_name }}">
+                                </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="files"
                                  data-ng-controller="FileUploadCtrl" data-ng-init="init({{ record.id }})">
@@ -85,7 +124,7 @@
 
                             </div>
                             {% buttons %}
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" data-ng-click="save()">
                                     {% bootstrap_icon "ok" %} Сохранить
                                 </button>
                             {% endbuttons %}
