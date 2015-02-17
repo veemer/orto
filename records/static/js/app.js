@@ -20,6 +20,63 @@ app.service('Record', ['$resource', function($resource) {
 }]);
 
 
+// directives
+app.directive('fileManager', function() {
+
+    function controller($scope, $upload) {
+
+        $scope.description = '';
+
+        $scope.save = function() {
+
+            for(var i=0; i<$scope.files.length; i++) {
+
+                var file = $scope.files[i];
+
+                $upload.upload({
+                    url: $scope.getUrl(),
+                    fields: {'description': $scope.description, 'patient_id': $scope.patient},
+                    file: file,
+                    fileFormDataName: 'attachment'
+                }).success(function(data, status, headers, config) {
+
+                    $scope.description = '';
+                    $scope.attachments.push(data.attachment);
+                    $scope.record = data.record;
+
+                });
+            }
+        }
+
+        $scope.getUrl = function() {
+
+            var url;
+
+            if($scope.record.id) {
+                url = '/api/records/'+$scope.record.id+'/attachments';
+            }
+            else {
+                url = '/api/records/attachments'
+            }
+
+            return url;
+        }
+
+    }
+
+    return {
+        templateUrl: '/static/partials/file-manager.html',
+        controller: ['$scope', '$upload', controller],
+        require: 'ngModel',
+        scope: {
+            record: '=',
+            attachments: '=',
+            patient: '=',
+        }
+    }
+
+});
+
 // controllers
 
 app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
@@ -39,61 +96,15 @@ app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
 }]);
 
 
-app.controller('FileUploadCtrl', [
-    '$scope', '$upload',
-    function($scope, $upload) {
-
-        $scope.record_id = null;
-        $scope.planoDescr = '';
-
-        $scope.plano_attachments = [];
-
-        $scope.init = function(record_id) {
-            $scope.record_id = record_id;
-        }
-
-        /*$scope.$watch('files', function () {
-            $scope.upload($scope.files);
-        });*/
-
-        $scope.savePlan = function() {
-            $scope.upload($scope.planoFiles, $scope.planoDescr, function(data) {
-                $scope.plano_attachments.push(data.attachment);
-                $scope.planoDescr = '';
-            })
-        }
-
-        $scope.upload = function (files, description, cb) {
-
-            var url = '/api/records/'+$scope.record_id+'/attachments';
-
-            if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    $upload.upload({
-                        url: url,
-                        fields: {'description': description},
-                        file: file,
-                        fileFormDataName: 'attachment',
-                    }).progress(function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-                    }).success(function (data, status, headers, config) {
-                        console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                        cb(data);
-                    });
-                }
-            }
-        };
-    }
-]);
-
-
 app.controller('RecordCtrl', [
     '$scope', '$location', 'Record',
     function($scope, $location, Record) {
 
         $scope.record = {}
+
+        $scope.planogramm_attachments = []
+        $scope.topogramm_attachments = []
+        $scope.R_attachments = []
 
         $scope.save = function() {
 
