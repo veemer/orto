@@ -21,6 +21,7 @@
             <div class="col-md=12">
                 <div role="tabpanel" data-ng-controller="RecordCtrl"
                      data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; load({{ record.id }})">
+
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#complaints" aria-controls="complaints" role="tab" data-toggle="tab">Жалобы</a></li>
@@ -80,47 +81,19 @@
                                            title="" type="text" data-ng-model="record.{{ form.next_visit_date.html_name }}">
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="files"
-                                 data-ng-controller="FileUploadCtrl" data-ng-init="init({{ record.id }})">
+                            <div role="tabpanel" class="tab-pane" id="files">
 
-                                <h3>Плантограмма</h3>
-
-                                <div class="row">
-                                    <div class="col-md-6" data-ng-repeat="plano in plano_attachments">
-                                        <div class="thumbnail">
-                                          <img width="128px" data-ng-src="{[{plano.attachment}]}" alt="...">
-                                          <div class="caption">
-                                            <h3>{[{ plano.description }]}</h3>
-                                            <p>...</p>
-                                          </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <button type="button" 
-                                        class="btn btn-default"
-                                        ng-file-select ng-model="planoFiles">
-                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                </button>
-
-                                <input type="text" data-ng-model="planoDescr">
-                                <button type="button" class="btn btn-default" data-ng-click="savePlan()">Save</button>
+                                <h3>Планограмма</h3>
+                                <div data-file-manager data-record="record" 
+                                     data-attachments="planogramm_attachments" data-patient="{{ patient.id }}"></div>
 
                                 <h3>Топограмма</h3>
-                                <button type="button" 
-                                        class="btn btn-default" 
-                                        aria-label="Left Align"
-                                        ng-file-select ng-model="topo">
-                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                </button>
+                                <div data-file-manager data-record="record" 
+                                     data-attachments="topogramm_attachments" data-patient="{{ patient.id }}"></div>
 
                                 <h3>R-снимки</h3>
-                                <button type="button" 
-                                        class="btn btn-default" 
-                                        aria-label="Left Align"
-                                        ng-file-select ng-model="R">
-                                    Загрузить <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-                                </button>
+                                <div data-file-manager data-record="record" 
+                                     data-attachments="R_attachments" data-patient="{{ patient.id }}"></div>
 
                             </div>
                             {% buttons %}
