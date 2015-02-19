@@ -60,6 +60,7 @@ app.directive('fileManager', function() {
                     $scope.description = '';
                     $scope.attachments.push(data.attachment);
                     $scope.record = data.record;
+                    $scope.files[0].dataUrl = null;
 
                 });
             }
@@ -107,10 +108,15 @@ app.directive('fileManager', function() {
 
     }
 
+    function link(scope, element, attrs) {
+        console.log(attrs);
+        scope.title = attrs.title;
+    }
+
     return {
         templateUrl: '/static/partials/file-manager.html',
         controller: ['$scope', '$upload', '$timeout', controller],
-        require: 'ngModel',
+        link: link,
         scope: {
             record: '=',
             attachments: '=',

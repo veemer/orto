@@ -44,3 +44,7 @@ span.status-yellow:hover, span.status-yellow-active {
     color: #fff;
     background-color: #f0ad4e;
 }
+
+ul.tabs-record {
+    margin-bottom: 20px;
+}

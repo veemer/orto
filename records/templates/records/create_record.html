@@ -23,7 +23,7 @@
                      data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; load({{ record.id }})">
 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs tabs-record" role="tablist">
                         <li role="presentation" class="active"><a href="#complaints" aria-controls="complaints" role="tab" data-toggle="tab">Жалобы</a></li>
                         <li role="presentation"><a href="#treatment" aria-controls="treatment" role="tab" data-toggle="tab">Лечение</a></li>
                         <li role="presentation"><a href="#files" aria-controls="files" role="tab" data-toggle="tab">Файлы</a></li>
@@ -85,28 +85,31 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
-                                        <h3>Планограмма</h3>
+                                        <!--<h3>Планограмма</h3>-->
                                         <div data-file-manager data-record="record" 
                                              data-attachments="planogramm_attachments"
                                              data-patient="{{ patient.id }}"
-                                             data-attachment-type="AttachmentType.planogramm"></div>
+                                             data-attachment-type="AttachmentType.planogramm"
+                                             data-title="Планограмма"></div>
 
                                     </div>
 
                                     <div class="col-md-4">
-                                        <h3>Топограмма</h3>
+                                        <!--<h3>Топограмма</h3>-->
                                         <div data-file-manager data-record="record" 
                                              data-attachments="topogramm_attachments"
                                              data-patient="{{ patient.id }}"
-                                             data-attachment-type="AttachmentType.topogramm"></div>
+                                             data-attachment-type="AttachmentType.topogramm"
+                                             data-title="Топограмма"></div>
                                         
                                     </div>
                                     <div class="col-md-4">
-                                        <h3>R-снимки</h3>
+                                        <!--<h3>R-снимки</h3>-->
                                         <div data-file-manager data-record="record" 
                                              data-attachments="R_attachments"
                                              data-patient="{{ patient.id }}"
-                                             data-attachment-type="AttachmentType.R"></div>
+                                             data-attachment-type="AttachmentType.R"
+                                             data-title="R-снимки"></div>
                                     </div>
                                 </div>
 

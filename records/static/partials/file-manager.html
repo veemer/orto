@@ -1,26 +1,54 @@
-<div class="row">
-    <div class="col-md-6" data-ng-repeat="attachment in attachments">
-        <div class="thumbnail">
-            <img width="128px" data-ng-src="{[{attachment.attachment}]}" alt="...">
-            <div class="caption">
-                <p>{[{ attachment.description }]}</p>
-            </div>
-        </div>
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">{[{ title }]}</h3>
     </div>
+
+    <div class="panel-body">
+        <div class="media" data-ng-repeat="attachment in attachments">
+          <div class="media-left">
+            <a data-ng-href="{[{attachment.attachment}]}" target="_blank">
+              <img class="media-object" data-ng-src="{[{attachment.attachment}]}" alt="..." width="64px">
+            </a>
+          </div>
+          <div class="media-body">            
+            {[{ attachment.description }]}
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="input-group">
+            
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-ng-file-select data-ng-model="files">
+                    <span class="glyphicon glyphicon-picture" aria-hidden="true" data-ng-if="!files[0].dataUrl"></span>
+                    <img height="20px" class="media-object" data-ng-if="files[0].dataUrl" data-ng-src="{[{ files[0].dataUrl }]}">
+                </button>
+            </span>
+
+            <input type="text" class="form-control" placeholder="Описание" data-ng-model="description">
+
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-ng-click="save()">
+                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                </button>
+            </span>
+        </div>
+
+    </div>
+
 </div>
 
+<!--
+        <div class="form-group">
+        <img data-ng-src="{[{ files[0].dataUrl }]}" width="64px">
+        <button type="button"  class="btn btn-default" data-ng-file-select data-ng-model="files">
+            Выбрать <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+        </button>
+            <input type="text" class="form-control" placeholder="Описание" data-ng-model="description">
+        </div>
 
-<form class="form-inline">
-    
-    <img data-ng-src="{[{ files[0].dataUrl }]}" width="64px">
-    <button type="button"  class="btn btn-default" data-ng-file-select data-ng-model="files">
-        Выбрать <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-    </button>
+        <button type="submit" class="btn btn-default" data-ng-click="save()">Загрузить</button>
 
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Описание" data-ng-model="description">
-    </div>
-
-    <button type="submit" class="btn btn-default" data-ng-click="save()">Загрузить</button>
-
-</form>
+-->
