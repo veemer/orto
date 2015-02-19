@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="{{ form.complaints.id_for_label }}">Жалобы</label>
                                     <textarea class="form-control" cols="40" id="{{ form.complaints.id_for_label }}"
-                                              name="{{ form.complaints.html_name }}" placeholder="Жалобы" rows="10"
+                                              name="{{ form.complaints.html_name }}" placeholder="Жалобы" rows="5"
                                               title="" data-ng-model="record.{{ form.complaints.html_name }}"></textarea>
                                 </div>
 
@@ -46,14 +46,14 @@
                                     <label class="control-label" for="{{ form.objective_status.id_for_label }}">Объективный статус</label>
                                     <textarea class="form-control" cols="40" id="{{ form.objective_status.id_for_label }}"
                                               name="{{ form.objective_status.html_name }}" placeholder="Объективный статус" 
-                                              rows="10" title="" data-ng-model="record.{{ form.objective_status.html_name }}"></textarea>
+                                              rows="5" title="" data-ng-model="record.{{ form.objective_status.html_name }}"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="control-label" for="{{ form.local_status.id_for_label }}">Локальный статус</label>
                                     <textarea class="form-control" cols="40" id="{{ form.local_status.id_for_label }}"
                                               name="{{ form.local_status.html_name }}" placeholder="Локальный статус"
-                                              rows="10" title="" data-ng-model="record.{{ form.local_status.html_name }}"></textarea>
+                                              rows="2" title="" data-ng-model="record.{{ form.local_status.html_name }}"></textarea>
                                 </div>
 
                             </div>
@@ -63,7 +63,7 @@
                                     <label class="control-label" for="{{ form.diagnosis.id_for_label }}">Диагноз</label>
                                     <textarea class="form-control" cols="40" id="{{ form.diagnosis.id_for_label }}" 
                                               name="{{ form.diagnosis.html_name }}" placeholder="Диагноз"
-                                              rows="10" title="" data-ng-model="record.{{ form.diagnosis.html_name }}"></textarea>
+                                              rows="5" title="" data-ng-model="record.{{ form.diagnosis.html_name }}"></textarea>
                                 </div>
                                 
                                 <!--{% bootstrap_field form.recommendations %}-->
