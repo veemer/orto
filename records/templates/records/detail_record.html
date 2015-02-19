@@ -1,5 +1,11 @@
 {% extends 'records/base.html' %}
 
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/static/css/record.css">
+<link rel="stylesheet" type="text/css" media="print" href="/static/css/print.css">
+{% endblock %}
+
 {% block content %}
 
     <div class="row">
@@ -15,7 +21,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h1 class="text-center" style="margin-bottom: 50px">Медицинское заключение</h1>
+            <h1 class="text-center">Медицинское заключение</h1>
 
             <p><b>Дата</b> <span class="info">{{ record.visit_date }}</span></p>
             <p><b>ФИО Врача</b> <span class="info">{{ record.doctor.first_name }} {{ record.doctor.last_name }}</span></p>

@@ -1,5 +1,11 @@
+
+
+div.container-main {
+    display: block;
+}
+
 img.record-detail-attach {
     display: block;
-    width: 720px;
-    margin: 0;
+    width: 210mm;
+    padding: 20px 0;
 }
