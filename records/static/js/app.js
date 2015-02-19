@@ -109,7 +109,6 @@ app.directive('fileManager', function() {
     }
 
     function link(scope, element, attrs) {
-        console.log(attrs);
         scope.title = attrs.title;
     }
 
