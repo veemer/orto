@@ -48,3 +48,9 @@ span.status-yellow:hover, span.status-yellow-active {
 ul.tabs-record {
     margin-bottom: 20px;
 }
+
+img.record-detail-attach {
+    display: inline-block;
+    width: 280px;
+    margin: 10px;
+}

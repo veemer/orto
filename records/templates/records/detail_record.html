@@ -29,9 +29,9 @@
             <p><b>Рекоммендации</b> ??</p>
             <p><b>Рекомендуемая дата следующего посещения</b> <span class="info">{{ record.next_visit_date }}</span></p>
             <p>
-                <b>Дополнительно</b>
+                <b>Дополнительно</b><br>
                 {% for attach in record.attachment_set.all %}
-                    <img style="height: 640px; width: 480px; display: block; padding: 10px" src="{{ attach.attachment.url }}" />
+                    <img src="{{ attach.attachment.url }}" class="record-detail-attach" />
                 {% endfor %}
             </p>
             <p><b>Подпись врача __________________</p>
