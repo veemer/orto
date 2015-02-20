@@ -6,6 +6,12 @@
 <link rel="stylesheet" type="text/css" media="print" href="/static/css/print.css">
 {% endblock %}
 
+{% block topnav %}
+<a role="button" type="submit" class="btn btn-primary" href="{% url 'records_list' record.patient_id %}"><span class="glyphicon glyphicon-arrow-left"></span> К записям пациента</a>
+<a role="button" type="submit" class="btn btn-primary" href="{% url 'update_record' record.id %}">Редактировать</a>
+{{ block.super }}
+{% endblock %}
+
 {% block content %}
 
     <div class="row">

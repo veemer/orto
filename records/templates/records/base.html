@@ -48,10 +48,12 @@
                     </ul/>-->
 
                     <div class="navbar-form navbar-right">
-                        {% if can_print %}
-                        <a role="button" type="submit" class="btn btn-success" target="_blank" href="?print">Печать</a>
-                        {% endif %}
-                        <a role="button" type="submit" class="btn btn-danger" href="{% url 'logout' %}">Выйти</a>
+                        {% block topnav %}
+                            {% if can_print %}
+                            <a role="button" type="submit" class="btn btn-success" target="_blank" href="?print">Печать</a>
+                            {% endif %}
+                            <a role="button" type="submit" class="btn btn-danger" href="{% url 'logout' %}">Выйти</a>
+                        {% endblock %}
                     </div>
 
                 </div><!--/.nav-collapse -->
