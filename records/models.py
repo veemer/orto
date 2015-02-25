@@ -90,3 +90,11 @@ class Attachment(models.Model):
     def __unicode__(self):
 
         return u'{} - {}'.format(self.record, self.attachment.name)
+
+
+class Agreement(models.Model):
+
+    patient = models.ForeignKey(Patient)
+    date = models.DateField(auto_now_add=True)
+    price = models.IntegerField()
+    price_words = models.CharField(max_length=128)
