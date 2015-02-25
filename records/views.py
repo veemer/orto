@@ -168,6 +168,11 @@ class AgreementsList(ListView):
 
         return super(AgreementsList, self).dispatch(request, *args, **kwargs)
 
+    def get_queryset(self):
+
+        qs = super(AgreementsList, self).get_queryset()
+        return qs.filter(patient=self.patient)
+
     def get_context_data(self, **kwargs):
 
         context = super(AgreementsList, self).get_context_data(**kwargs)
