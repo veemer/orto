@@ -98,3 +98,9 @@ class Agreement(models.Model):
     date = models.DateField(auto_now_add=True)
     price = models.IntegerField()
     price_words = models.CharField(max_length=128)
+
+    def get_number(self):
+        return u'{}/{}'.format(self.date.year, self.patient.id)
+
+    def __unicode__(self):
+        return u'{}:{}'.format(self.patient, self.get_number())
