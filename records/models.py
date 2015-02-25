@@ -94,10 +94,10 @@ class Attachment(models.Model):
 
 class Agreement(models.Model):
 
-    patient = models.ForeignKey(Patient)
-    date = models.DateField(auto_now_add=True)
-    price = models.IntegerField()
-    price_words = models.CharField(max_length=128)
+    patient = models.ForeignKey(Patient, verbose_name=u'Пациента')
+    date = models.DateField(auto_now_add=True, verbose_name=u'Дата создания')
+    price = models.IntegerField(verbose_name=u'Сумма')
+    price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
 
     def get_number(self):
         return u'{}/{}'.format(self.date.year, self.patient.id)
