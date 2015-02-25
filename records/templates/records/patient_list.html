@@ -67,8 +67,8 @@
                             <td>
                                 <small>
                                     <a href="{% url 'records_list' patient.id %}">Записи</a> |
-                                    <a href="{% url 'update_patient' patient.pk %}">Редактировать</a> |
-                                    <a href="{% url 'print' %}">Договор</a>
+                                    <a href="{% url 'update_patient' patient.id %}">Редактировать</a> |
+                                    <a href="{% url 'agreements_list' patient.id %}">Договора</a>
                                 </small>
                             </td>
                         </tr>
