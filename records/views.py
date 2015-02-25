@@ -42,6 +42,7 @@ class PatientList(ListView):
 
         return context
 
+
 class CreatePatient(CreateView):
     form_class = PatientForm
     template_name = 'records/create_patient.html'
