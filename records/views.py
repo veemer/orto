@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.formsets import formset_factory
 
-from records.models import Patient, Record, Attachment
+from records.models import Patient, Record, Attachment, Agreement
 from records.forms import AttachmentFormset, PatientForm, RecordForm
 
 
@@ -150,3 +150,33 @@ class DetailRecord(DetailView):
 class CreateAttachments(FormView):
     template_name = 'records/create_attachments.html'
     form_class = AttachmentFormset
+
+
+# Agreements
+
+class AgreementsList(ListView):
+
+    model = Agreement
+    paginate_by = 10
+    context_object_name = 'agreements'
+    template_name = 'records/agreements_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+
+        self.patient_id = kwargs.get('pk')
+        self.patient = get_object_or_404(Patient, id=self.patient_id)
+
+        return super(AgreementsList, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+
+        context = super(AgreementsList, self).get_context_data(**kwargs)
+        context['patient'] = self.patient
+        return context
+
+
+class AgreementDetail(DetailView):
+
+    model = Agreement
+    context_object_name = 'agreement'
+    template_name = 'records/agreement_detail.html'

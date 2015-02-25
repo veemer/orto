@@ -1,0 +1,16 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="com-md-12">
+            <h1>Договора пациента {{ patient }}</h1>
+        </div>
+    </div>
+
+    {% for agreement in agreements %}
+    {{ agreement }}<br>
+    {% endfor %}
+
+{% endblock %}
