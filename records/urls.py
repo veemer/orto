@@ -6,7 +6,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 
 from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, CreateRecord, \
-                          UpdateRecord, DetailRecord, CreateAttachments, AgreementsList, AgreementDetail
+                          UpdateRecord, DetailRecord, CreateAttachments, \
+                          AgreementsList, AgreementDetail, AgreementCreate
 
 from records.api import AttachmentsApiView, RecordsApiView
 
@@ -33,6 +34,7 @@ urlpatterns = patterns('',
 
     url(r'^agreements/(?P<pk>\d+)/$', AgreementsList.as_view(), name='agreements_list'),
     url(r'^agreements/(?P<pk>\d+)/detail/$', AgreementDetail.as_view(), name='agreements_detail'),
+    url(r'^agreements/(?P<pk>\d+)/create/$', AgreementCreate.as_view(), name='agreements_create'),
 
     # Accounts views
 

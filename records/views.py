@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.forms.formsets import formset_factory
 
 from records.models import Patient, Record, Attachment, Agreement
-from records.forms import AttachmentFormset, PatientForm, RecordForm
+from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm
 
 
 # Patients
@@ -172,7 +172,30 @@ class AgreementsList(ListView):
 
         context = super(AgreementsList, self).get_context_data(**kwargs)
         context['patient'] = self.patient
+
         return context
+
+
+class AgreementCreate(CreateView):
+
+    model = Agreement
+    form_class = AgreementForm
+    template_name = 'records/agreement_create.html'
+
+    def dispatch(self, request, *args, **kwargs):
+
+        self.patient_id = kwargs.get('pk')
+        self.patient = get_object_or_404(Patient, id=self.patient_id)
+
+        return super(AgreementCreate, self).dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+
+        form.instance.patient = self.patient
+        return super(AgreementCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agreements_list', args=(self.patient.pk,))
 
 
 class AgreementDetail(DetailView):
