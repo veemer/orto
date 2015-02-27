@@ -9,3 +9,7 @@ img.record-detail-attach {
     width: 210mm;
     padding: 20px 0;
 }
+
+.container-main {
+    margin: -20px;
+}

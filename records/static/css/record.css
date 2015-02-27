@@ -18,3 +18,30 @@ img.record-detail-attach {
 h1 {
     margin-bottom: 40px;
 }
+
+.underline {
+    text-decoration: underline;
+}
+
+.fr {
+    float: right;
+}
+
+
+.container-main  {
+    padding: 10mm!important;
+    font-size: 13px;
+}
+
+div.row.contacts {
+    border: 1px solid black;
+}
+
+div.contacts-left {
+    border-right: 1px solid black;
+    padding: 20px;
+}
+
+div.contacts-right {
+    padding: 20px;
+}
