@@ -33,15 +33,8 @@ h1 {
     font-size: 13px;
 }
 
-div.row.contacts {
+
+td.contacts {
     border: 1px solid black;
-}
-
-div.contacts-left {
-    border-right: 1px solid black;
-    padding: 20px;
-}
-
-div.contacts-right {
-    padding: 20px;
+    padding: 10px;
 }

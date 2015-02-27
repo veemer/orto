@@ -216,3 +216,12 @@ class AgreementDetail(DetailView):
     model = Agreement
     context_object_name = 'agreement'
     template_name = 'records/agreement_detail.html'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(AgreementDetail, self).get_context_data(**kwargs)
+        context['can_print'] = True
+        if self.request.GET.get('print', None) is not None:
+            context['print'] = True
+
+        return context
