@@ -33,8 +33,8 @@ urlpatterns = patterns('',
     # Agreements views
 
     url(r'^agreements/(?P<pk>\d+)/$', AgreementsList.as_view(), name='agreements_list'),
-    url(r'^agreements/(?P<pk>\d+)/detail/$', AgreementDetail.as_view(), name='agreements_detail'),
-    url(r'^agreements/(?P<pk>\d+)/create/$', AgreementCreate.as_view(), name='agreements_create'),
+    url(r'^agreements/(?P<pk>\d+)/detail/$', AgreementDetail.as_view(), name='agreement_detail'),
+    url(r'^agreements/(?P<pk>\d+)/create/$', AgreementCreate.as_view(), name='agreement_create'),
 
     # Accounts views
 

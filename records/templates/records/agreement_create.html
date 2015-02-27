@@ -5,7 +5,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h1>Новый договор</h1>
+
+            <h1>Новый договор для пациента <small>"{{ patient }}" <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span></small></h1>
+
+            <a href="{% url 'agreements_list' patient.id %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span> Договора пациента
+            </a>
+
         </div>
     </div>
 
@@ -16,7 +22,7 @@
 
         {% buttons %}
             <button type="submit" class="btn btn-primary">
-                {% bootstrap_icon "ok" %} Submit
+                {% bootstrap_icon "ok" %} Создать
             </button>
         {% endbuttons %}
 

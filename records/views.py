@@ -159,7 +159,7 @@ class AgreementsList(ListView):
 
     model = Agreement
     paginate_by = 10
-    context_object_name = 'agreements'
+    context_object_name = 'agreements_list'
     template_name = 'records/agreements_list.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -202,6 +202,13 @@ class AgreementCreate(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('agreements_list', args=(self.patient.pk,))
+
+    def get_context_data(self, **kwargs):
+
+        context = super(AgreementCreate, self).get_context_data(**kwargs)
+        context['patient'] = self.patient
+
+        return context
 
 
 class AgreementDetail(DetailView):
