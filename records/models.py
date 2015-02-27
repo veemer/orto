@@ -99,6 +99,10 @@ class Agreement(models.Model):
     price = models.IntegerField(verbose_name=u'Сумма')
     price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
 
+    class Meta:
+        ordering = ['-id']
+
+
     def get_number(self):
         return u'{}/{}'.format(self.date.year, self.patient.id)
 
