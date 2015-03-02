@@ -26,7 +26,7 @@
     Общество с ограниченной ответственностью «ИнтерМед-Юг», свидетельство о постановке на учет в налоговом органе серия 61 
     № 002330027 от «25» января 2007 г., действующее в соответствии с Уставом и лицензией  №  ЛО-61-01-002439  от 19.09.2012 г.,
     в лице генерального директора Бутко Владимира Владимировича, действующего на основании Устава, в дальнейшем «Исполнитель» с одной стороны,
-    и <span class="underline">{{ agreement.patient }}</span> в дальнейшем «Заказчик», действующий в интересах ______________,
+    и <span class="underline">{{ agreement.customer }}</span> в дальнейшем «Заказчик», действующий в интересах <span class="underline">{{ agreement.patient }}</span>,
     в дальнейшем «Потребитель», с другой стороны, совместно именуемые «Стороны», по отдельности «Сторона»,
     заключили настоящий Договор (далее – «Договор») о нижеследующем:
     </p>
@@ -86,13 +86,19 @@
             </td>
             <td class="contacts">
                 Заказчик:<br>
-                ___________________/_______________________<br>
+                <span class="underline">{{ agreement.customer }}</span><br>
                 Потребитель:<br>
-                __________________/__________<br>
-                Паспорт (иной документ) серия <span class="underline">{{ agreement.patient.passport_seria }}</span> № <span class="underline">{{ agreement.patient.passport_number}}</span><br>
-                Выдан <span class="underline">{{ agreement.patient.passport_issued_by }}</span><br>
-                «___»________20__г. услугу получил, претензий не имею<br>
-                _________________/_______________/<br>
+                <span class="underline">{{ agreement.patient }}</span><br>
+                
+                {% if agreement.patient.birth_cert_number %}
+                    Свидетельство о рождении номер {{ agreement.patient.birth_cert_number }}<br>
+                {% else %}
+                    Паспорт серия <span class="underline">{{ agreement.patient.passport_seria }}</span> № <span class="underline">{{ agreement.patient.passport_number}}</span><br>
+                    Выдан <span class="underline">{{ agreement.patient.passport_issued_by }}</span><br>
+                {% endif %}
+                
+                «<span class="underline">{{ agreement.date.day }}</span>» <span class="underline">{{ agreement.date|date:"N" }} {{ agreement.date.year }}</span>г. услугу получил, претензий не имею<br>
+                <span class="underline">{{ agreement.patient }} </span>/_______________/<br>
             </td>
         </tr>
     </table>
