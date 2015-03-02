@@ -99,6 +99,8 @@ class Agreement(models.Model):
     price = models.IntegerField(verbose_name=u'Сумма')
     price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
 
+    customer = models.CharField(max_length=128, verbose_name=u'Заказчик')
+
     class Meta:
         ordering = ['-id']
 

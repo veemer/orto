@@ -22,6 +22,7 @@
             <thead>
                 <tr>
                     <th>Номер</th>
+                    <th>Заказчик</th>
                     <th>Дата создания</th>
                     <th>Сумма</th>
                 </tr>
@@ -30,6 +31,7 @@
                 {% for agreement in agreements_list %}
                 <tr>
                     <th scope="row"><a href="{% url 'agreement_detail' agreement.id %}">{{ agreement.get_number }}</a></th>
+                    <td>{{ agreement.customer }}</td>
                     <td>{{ agreement.date }}</td>
                     <td>{{ agreement.price }}</td>
                 </tr>
