@@ -90,11 +90,11 @@
                 Потребитель:<br>
                 <span class="underline">{{ agreement.patient }}</span><br>
                 
-                {% if agreement.patient.birth_cert_number %}
-                    Свидетельство о рождении номер {{ agreement.patient.birth_cert_number }}<br>
-                {% else %}
+                {% if agreement.patient.has_passport %}
                     Паспорт серия <span class="underline">{{ agreement.patient.passport_seria }}</span> № <span class="underline">{{ agreement.patient.passport_number}}</span><br>
                     Выдан <span class="underline">{{ agreement.patient.passport_issued_by }}</span><br>
+                {% else %}
+                    Свидетельство о рождении номер {{ agreement.patient.birth_cert_number }}<br>
                 {% endif %}
                 
                 «<span class="underline">{{ agreement.date.day }}</span>» <span class="underline">{{ agreement.date|date:"N" }} {{ agreement.date.year }}</span>г. услугу получил, претензий не имею<br>

@@ -50,6 +50,9 @@ class Patient(models.Model):
 
     created_by = models.ForeignKey(User)
 
+    def has_passport(self):
+        return self.passport_seria and self.passport_number and self.passport_issued_by
+
     def __unicode__(self):
 
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)
