@@ -106,7 +106,7 @@ class Agreement(models.Model):
 
 
     def get_number(self):
-        return u'{}/{}'.format(self.date.year, self.patient.id)
+        return u'{}/{}'.format(self.id, self.date.year)
 
     def __unicode__(self):
         return u'{}:{}'.format(self.patient, self.get_number())
