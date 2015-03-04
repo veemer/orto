@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.utils.timezone import now
 from django.shortcuts import render, get_object_or_404
 
 from django.views.generic.list import ListView
@@ -39,6 +40,9 @@ class PatientList(ListView):
         q = self.request.GET.get('q')
         if q:
             context['q'] = q
+
+        today = now()
+        context['born_today_cnt'] = Patient.objects.filter(birth_day__day=today.day, birth_day__month=today.month).count()
 
         return context
 
