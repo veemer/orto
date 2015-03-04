@@ -3,7 +3,7 @@
 import csv
 from django.http import HttpResponse
 
-from django.utils.timezone import now
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 
 from django.views.generic.list import ListView
@@ -44,7 +44,7 @@ class PatientList(ListView):
         if q:
             context['q'] = q
 
-        today = now()
+        today = timezone.localtime(timezone.now())
         context['born_today_cnt'] = Patient.objects.filter(birth_day__day=today.day, birth_day__month=today.month).count()
 
         return context
@@ -59,7 +59,7 @@ class PatientBornTodayList(ListView):
     def get_queryset(self):
 
         qs = super(PatientBornTodayList, self).get_queryset()
-        today = now()
+        today = timezone.localtime(timezone.now())
 
         return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
 
@@ -101,7 +101,7 @@ class PatientBornTodayCsvList(PatientCsvList):
     def get_queryset(self):
 
         qs = super(PatientBornTodayCsvList, self).get_queryset()
-        today = now()
+        today = timezone.localtime(timezone.now())
 
         return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
 
