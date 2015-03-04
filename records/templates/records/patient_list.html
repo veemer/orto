@@ -1,5 +1,6 @@
 {% extends 'records/base.html' %}
 {% load bootstrap3 %}
+{% load rupluralize %}
 
 {% block content %}
 
@@ -15,7 +16,7 @@
         <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <a href="{% url 'born_today' %}">
-                День рождение у <b>{{ born_today_cnt }}</b> пациентов
+                День рождение у <b>{{ born_today_cnt }}</b> пациент{{ born_today_cnt|rupluralize:"а,ов,ов" }}
             </a>
         </div>
         {% endif %}
