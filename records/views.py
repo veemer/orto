@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import csv
+from django.http import HttpResponse
+
 from django.utils.timezone import now
 from django.shortcuts import render, get_object_or_404
 
@@ -56,6 +59,48 @@ class PatientBornTodayList(ListView):
     def get_queryset(self):
 
         qs = super(PatientBornTodayList, self).get_queryset()
+        today = now()
+
+        return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
+
+
+class PatientCsvList(ListView):
+
+    model = Patient
+    context_object_name = 'patient_list'
+    csv_prefix = 'patient-list'
+
+    def get_queryset(self):
+
+        qs = super(PatientCsvList, self).get_queryset()
+        return qs.filter(allow_contacts=True)
+
+    def render_to_response(self, context, **response_kwargs):
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="{}-{}.csv"'.format(self.csv_prefix, now())
+
+        writer = csv.writer(response)
+
+        row = [u'Фамилия', u'Имя', u'Отчество', u'Мобильный телефон', u'E-mail']
+        row = [s.encode('utf-8') for s in row]
+        writer.writerow(row)
+
+        for patient in context[self.context_object_name]:
+            row = [patient.surname, patient.first_name, patient.father_name, patient.phone_mobile, patient.email]
+            row = [s.encode('utf-8') for s in row]
+            writer.writerow(row)
+
+        return response
+
+
+class PatientBornTodayCsvList(PatientCsvList):
+
+    csv_prefix = 'patient-born-today'
+
+    def get_queryset(self):
+
+        qs = super(PatientBornTodayCsvList, self).get_queryset()
         today = now()
 
         return qs.filter(birth_day__day=today.day, birth_day__month=today.month)

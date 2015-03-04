@@ -15,7 +15,7 @@
         <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <a href="{% url 'born_today' %}">
-                День рождения у <b>{{ born_today_cnt }}</b> пациентов
+                День рождение у <b>{{ born_today_cnt }}</b> пациентов
             </a>
         </div>
         {% endif %}
@@ -44,6 +44,7 @@
         </div>
         <div class="col-md-6">
             <a href="{% url 'create_patient' %}" type="button" class="btn btn-primary">Добавить</a>
+            <a href="{% url 'patient_list_csv' %}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Скачать CSV</a>
         </div>
     </div>
 
