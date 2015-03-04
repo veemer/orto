@@ -16,6 +16,7 @@
                     <th>Рабочий телефон</th>
                     <th>Домашний телефон</th>
                     <th>E-mail</th>
+                    <th>Рассылка</th>
                     <th>Статус</th>
                 </tr>
             </thead>
@@ -30,6 +31,9 @@
                     <td>{{ patient.phone_home }}</td>
                     <td>{{ patient.phone_mobile }}</td>
                     <td>{{ patient.email }}</td>
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-{% if patient.allow_contacts %}ok-sign mailing-yes{% else %}ban-circle mailing-no{% endif %}" aria-hidden="true"></span>
+                    </td>
                     <td>
                         <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span>
                     </td>

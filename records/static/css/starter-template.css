@@ -54,3 +54,13 @@ img.record-detail-attach {
     width: 280px;
     margin: 10px;
 }
+
+span.mailing-yes {
+    font-size: 16px;
+    color: #3c763d;
+}
+
+span.mailing-no {
+    font-size: 16px;
+    color: #d9534f;
+}
