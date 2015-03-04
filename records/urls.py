@@ -5,7 +5,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 
-from records.views import PatientList, CreatePatient, UpdatePatient, RecordsList, CreateRecord, \
+from records.views import PatientList, CreatePatient, UpdatePatient, PatientBornTodayList, RecordsList, CreateRecord, \
                           UpdateRecord, DetailRecord, CreateAttachments, \
                           AgreementsList, AgreementDetail, AgreementCreate
 
@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^create_patient/$', CreatePatient.as_view(), name='create_patient'),
     url(r'^update_patient/(?P<pk>\d+)/$', UpdatePatient.as_view(), name='update_patient'),
+    url(r'^borntoday/$', PatientBornTodayList.as_view(), name='born_today'),
 
     # Records views
 

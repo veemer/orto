@@ -47,6 +47,20 @@ class PatientList(ListView):
         return context
 
 
+class PatientBornTodayList(ListView):
+
+    model = Patient
+    template_name = 'records/patient_born_today_list.html'
+    context_object_name = 'patient_list'
+
+    def get_queryset(self):
+
+        qs = super(PatientBornTodayList, self).get_queryset()
+        today = now()
+
+        return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
+
+
 class CreatePatient(CreateView):
     form_class = PatientForm
     template_name = 'records/create_patient.html'

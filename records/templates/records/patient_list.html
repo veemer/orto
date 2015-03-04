@@ -14,7 +14,7 @@
         {% if born_today_cnt %}
         <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <a href="#">
+            <a href="{% url 'born_today' %}">
                 День рождения у <b>{{ born_today_cnt }}</b> пациентов
             </a>
         </div>
