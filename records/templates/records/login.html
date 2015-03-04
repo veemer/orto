@@ -9,11 +9,13 @@
 
 {% block content %}
     <div class="row">
+        <img src="/static/orto-logo.png" class="logo">
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <form method="POST" action="?" class="form-signin" role="form">
                 {% csrf_token %}
-
-                <h2 class="form-signin-heading">Электронная карта "Ортодон"</h2>
+                <h2 class="form-signin-heading">Электронная карта</h2>
                 
                 <label for="inputEmail" class="sr-only">Логин</label>
                 <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Логин" required autofocus>
