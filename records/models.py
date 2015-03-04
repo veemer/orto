@@ -103,10 +103,11 @@ class Agreement(models.Model):
     price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
 
     customer = models.CharField(max_length=128, verbose_name=u'Заказчик')
+    consumer = models.CharField(max_length=128, verbose_name=u'Потребитель')
+    document = models.CharField(max_length=128, verbose_name=u'Пасспорт (иной документа)')
 
     class Meta:
         ordering = ['-id']
-
 
     def get_number(self):
         return u'{}/{}'.format(self.id, self.date.year)
