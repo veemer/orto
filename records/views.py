@@ -77,8 +77,10 @@ class PatientCsvList(ListView):
 
     def render_to_response(self, context, **response_kwargs):
 
+        now_str = timezone.localtime(timezone.now()).strftime('%Y-%m-%d_%H:%M')
+
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="{}-{}.csv"'.format(timezone.localtime(timezone.now()))
+        response['Content-Disposition'] = 'attachment; filename="{}-{}.csv"'.format(self.csv_prefix, now_str)
 
         writer = csv.writer(response)
 
