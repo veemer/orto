@@ -4,16 +4,15 @@ import csv
 from django.http import HttpResponse
 
 from django.utils import timezone
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic.detail import DetailView
 
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.forms.formsets import formset_factory
+from django.core.urlresolvers import reverse_lazy
 
-from records.models import Patient, Record, Attachment, Agreement
+from records.models import Patient, Record, Agreement
 from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm
 
 
@@ -45,7 +44,8 @@ class PatientList(ListView):
             context['q'] = q
 
         today = timezone.localtime(timezone.now())
-        context['born_today_cnt'] = Patient.objects.filter(birth_day__day=today.day, birth_day__month=today.month).count()
+        context['born_today_cnt'] = Patient.objects.filter(birth_day__day=today.day,
+                                                           birth_day__month=today.month).count()
 
         return context
 
