@@ -233,11 +233,11 @@ app.controller('RecordCtrl', [
                             $scope.R_attachments.push(attachment);
                         }
 
-                        $scope.load_attachments = false;
-
                     });
 
-                })
+                    $scope.load_attachments = false;
+
+                });
 
             }
 
