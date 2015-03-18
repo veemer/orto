@@ -15,7 +15,7 @@
             </a>
         </div>
     </div>
-    
+
     <div class="container">
         <div class="row" style="margin-top:20px">
             <div class="col-md=12">
@@ -30,7 +30,7 @@
                     </ul>
 
                     <!-- Tab panes -->
-                    <form class="form">
+                    <form class="form" data-load-spinner data-loading="loading_record">
                         <div class="tab-content">
                             {% csrf_token %}
                             <div role="tabpanel" class="tab-pane active" id="complaints">
@@ -81,7 +81,7 @@
                                            title="" type="text" data-ng-model="record.{{ form.next_visit_date.html_name }}">
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="files">
+                            <div role="tabpanel" class="tab-pane" id="files" data-load-spinner data-loading="load_attachments">
                                 <div class="row">
 
                                     <div class="col-md-4">
@@ -116,7 +116,9 @@
                             </div>
                             {% buttons %}
                                 <button type="submit" class="btn btn-primary" data-ng-click="save()">
-                                    {% bootstrap_icon "ok" %} Сохранить
+                                    <span class="glyphicon" aria-hidden="true"
+                                          data-ng-class="{'glyphicon-ok': !save_record, 'glyphicon-cog spinning': save_record}"></span>
+                                          Сохранить
                                 </button>
                             {% endbuttons %}
                         </div>

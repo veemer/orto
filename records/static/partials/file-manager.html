@@ -31,7 +31,9 @@
 
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" data-ng-click="save()">
-                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+                    <!--<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>-->
+                    <span class="glyphicon" aria-hidden="true"
+                          data-ng-class="{'glyphicon-upload': !loading, 'glyphicon-cog spinning': loading}"></span>
                 </button>
             </span>
         </div>

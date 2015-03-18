@@ -40,7 +40,11 @@ app.directive('fileManager', function() {
         $scope.description = '';
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
 
+        $scope.loading = false;
+
         $scope.save = function() {
+
+            $scope.loading = true;
 
             for(var i=0; i<$scope.files.length; i++) {
 
@@ -61,6 +65,8 @@ app.directive('fileManager', function() {
                     $scope.attachments.push(data.attachment);
                     $scope.record = data.record;
                     $scope.files[0].dataUrl = null;
+
+                    $scope.loading = false;
 
                 });
             }
@@ -126,6 +132,23 @@ app.directive('fileManager', function() {
 
 });
 
+
+app.directive('loadSpinner', [
+    function () {
+        return {
+            restrict: "AE",
+            transclude: true,
+            template: '<div class="loading-spinner-parent">' +
+                            '<div data-ng-show="loading" class="loading-spinner"></div>' +
+                            '<div data-ng-transclude></div>' +
+                        '</div>',
+            scope: {
+                loading: '=?'
+            }
+        };
+    }
+]);
+
 // controllers
 
 app.controller('StatusCtrl', ['$scope', '$upload', function($scope, $upload) {
@@ -157,7 +180,13 @@ app.controller('RecordCtrl', [
         $scope.topogramm_attachments = []
         $scope.R_attachments = []
 
+        $scope.loading_record = false;
+        $scope.save_record = false;
+        $scope.load_attachments = false
+
         $scope.save = function() {
+
+            $scope.save_record = true;
 
             var params = {}
 
@@ -167,20 +196,26 @@ app.controller('RecordCtrl', [
 
             Record.save(params, $scope.record, function(data) {
                 $scope.record.id = data.record.id;
+                $scope.save_record = false;
             });
         }
 
         $scope.loadRecord = function(recordId) {
 
+            $scope.loading_record = true;
+
             if(recordId) {
                 Record.get({'id': recordId}, function(data) {
                     $scope.record = data.record;
+                    $scope.loading_record = false;
                 })
             }
 
         }
 
         $scope.loadAttachments = function(recordId) {
+
+            $scope.load_attachments = true
 
             if(recordId) {
 
@@ -197,6 +232,8 @@ app.controller('RecordCtrl', [
                         else if(attachment.attachment_type == AttachmentType.R) {
                             $scope.R_attachments.push(attachment);
                         }
+
+                        $scope.load_attachments = false;
 
                     });
 
