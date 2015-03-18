@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 GENDER = (
     (u'm', u'Мужской'),
@@ -54,6 +55,11 @@ class Patient(models.Model):
 
     def has_passport(self):
         return self.passport_seria and self.passport_number and self.passport_issued_by
+
+    def get_age(self):
+
+        today = timezone.localtime(timezone.now())
+        return today.year - self.birth_day.year
 
     def __unicode__(self):
 
