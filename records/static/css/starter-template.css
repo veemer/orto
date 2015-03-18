@@ -64,3 +64,10 @@ span.mailing-no {
     font-size: 16px;
     color: #d9534f;
 }
+
+.btn-username {
+    color: #eee!important;
+}
+.btn-username:hover {
+    color: #eee!important;
+}
