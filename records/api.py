@@ -39,13 +39,13 @@ class AttachmentsApiView(APIView):
                 patient = get_object_or_404(Patient, id=patient_id)
                 record = Record.objects.create(doctor=request.user, patient=patient)
 
-            attachment = serializer.save(doctor=request.user, record=record)
+            serializer.save(doctor=request.user, record=record)
 
             record = RecordSerializer(record)
 
             data = {'attachment': serializer.data, 'record': record.data}
             return Response(data, status=status.HTTP_200_OK)
-        
+
         else:
             data = {
                 'errors': serializer.errors

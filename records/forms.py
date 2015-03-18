@@ -9,7 +9,7 @@ AttachmentFormset = modelformset_factory(Attachment, extra=5, exclude=['record',
 
 
 class PatientForm(ModelForm):
-    
+
     class Meta:
 
         model = Patient
