@@ -4,8 +4,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 GENDER = (
-        (u'm', u'Мужской'),
-        (u'w', u'Женский')
+    (u'm', u'Мужской'),
+    (u'w', u'Женский')
 )
 
 PATIENT_STATUS = (
@@ -34,7 +34,8 @@ class Patient(models.Model):
     phone_mobile = models.CharField(max_length=64, blank=True, null=True, verbose_name=u'Мобильный телефон')
     email = models.EmailField(blank=True, null=True, verbose_name=u'E-Mail')
 
-    allow_contacts = models.BooleanField(default=False, verbose_name=u'Cогласен на CMC, E-Mail рассылку и опрос о качестве проведенных услуг')
+    allow_contacts = models.BooleanField(
+        default=False, verbose_name=u'Cогласен на CMC, E-Mail рассылку и опрос о качестве проведенных услуг')
 
     organization = models.CharField(max_length=128, blank=True, null=True, verbose_name=u'Организация')
 
@@ -42,7 +43,8 @@ class Patient(models.Model):
     passport_number = models.IntegerField(blank=True, null=True, verbose_name=u'Номер')
     passport_issued_by = models.CharField(blank=True, null=True, max_length=128, verbose_name=u'Кем выдан')
 
-    birth_cert_number = models.CharField(blank=True, null=True, max_length=128, verbose_name=u'Номер свидетельства о рождении')
+    birth_cert_number = models.CharField(
+        blank=True, null=True, max_length=128, verbose_name=u'Номер свидетельства о рождении')
 
     address = models.TextField(blank=True, null=True, verbose_name=u'Адрес')
 
