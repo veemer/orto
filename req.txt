@@ -5,3 +5,4 @@ wsgiref==0.1.2
 djangorestframework
 MySQL-python
 Pillow
+python-dateutil
