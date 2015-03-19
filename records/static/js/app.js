@@ -202,13 +202,17 @@ app.controller('RecordCtrl', [
 
         $scope.loadRecord = function(recordId) {
 
-            $scope.loading_record = true;
-
             if(recordId) {
-                Record.get({'id': recordId}, function(data) {
-                    $scope.record = data.record;
-                    $scope.loading_record = false;
-                })
+
+                $scope.loading_record = true;
+
+                if(recordId) {
+                    Record.get({'id': recordId}, function(data) {
+                        $scope.record = data.record;
+                        $scope.loading_record = false;
+                    })
+                }
+
             }
 
         }
