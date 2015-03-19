@@ -3,6 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from dateutil.relativedelta import relativedelta
 
 GENDER = (
     (u'm', u'Мужской'),
@@ -80,7 +81,8 @@ class Record(models.Model):
 
     visit_date = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата посещения')
     update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
-    next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True)
+    next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True,
+                                       default=timezone.localtime(timezone.now()) + relativedelta(months=6))
 
     class Meta:
         ordering = ['-id']
