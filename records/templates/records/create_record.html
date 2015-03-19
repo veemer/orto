@@ -20,7 +20,7 @@
         <div class="row" style="margin-top:20px">
             <div class="col-md=12">
                 <div role="tabpanel" data-ng-controller="RecordCtrl"
-                     data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; load({{ record.id }})">
+                     data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; record.next_visit_date='{{ next_visit_date }}'; load({{ record.id }})">
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tabs-record" role="tablist">

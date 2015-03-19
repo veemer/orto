@@ -12,6 +12,8 @@ from django.views.generic.detail import DetailView
 
 from django.core.urlresolvers import reverse_lazy
 
+from dateutil.relativedelta import relativedelta
+
 from records.models import Patient, Record, Agreement
 from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm
 
@@ -166,6 +168,9 @@ class CreateRecord(CreateView):
     def get_context_data(self, **kwargs):
         context = super(CreateRecord, self).get_context_data(**kwargs)
         context['patient'] = self.patient
+
+        next_visit_date = timezone.localtime(timezone.now()) + relativedelta(months=6)
+        context['next_visit_date'] = next_visit_date.strftime("%d.%m.%Y")
 
         return context
 
