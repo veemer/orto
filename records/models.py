@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 
+from records.managers import ThisWeekManager
+
+
 GENDER = (
     (u'm', u'Мужской'),
     (u'w', u'Женский')
@@ -53,6 +56,9 @@ class Patient(models.Model):
     status = models.CharField(max_length=128, choices=PATIENT_STATUS, default='green')
 
     created_by = models.ForeignKey(User)
+
+    objects = models.Manager()
+    this_week_objects = ThisWeekManager()
 
     def has_passport(self):
         return self.passport_seria and self.passport_number and self.passport_issued_by
