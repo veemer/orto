@@ -190,7 +190,7 @@ class CreateRecord(CreateView):
         context = super(CreateRecord, self).get_context_data(**kwargs)
         context['patient'] = self.patient
 
-        next_visit_date = timezone.localtime(timezone.now()) + relativedelta(months=6)
+        next_visit_date = timezone.localtime(timezone.now()).date() + relativedelta(months=6)
         context['next_visit_date'] = next_visit_date.strftime("%d.%m.%Y")
 
         return context
