@@ -49,6 +49,8 @@ class PatientList(ListView):
         context['born_today_cnt'] = Patient.objects.filter(birth_day__day=today.day,
                                                            birth_day__month=today.month).count()
 
+        context['visit_this_week_cnt'] = Patient.this_week_objects.count()
+
         return context
 
 
@@ -64,6 +66,17 @@ class PatientBornTodayList(ListView):
         today = timezone.localtime(timezone.now())
 
         return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
+
+
+class PatientVisitThisWeek(ListView):
+
+    model = Patient
+    template_name = 'records/patient_visit_this_week_list.html'
+    context_object_name = 'patient_list'
+
+    def get_queryset(self):
+
+        return Patient.this_week_objects.all()
 
 
 class PatientCsvList(ListView):
@@ -108,6 +121,14 @@ class PatientBornTodayCsvList(PatientCsvList):
         today = timezone.localtime(timezone.now())
 
         return qs.filter(birth_day__day=today.day, birth_day__month=today.month)
+
+
+class PatientVisitThisWeekCsvList(PatientCsvList):
+
+    csv_prefix = 'patient-visit-this-week'
+
+    def get_queryset(self):
+        return Patient.this_week_objects.all()
 
 
 class CreatePatient(CreateView):

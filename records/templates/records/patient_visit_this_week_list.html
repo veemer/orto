@@ -1,0 +1,57 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>На этой неделе рекомендовано посещение:</h1>
+        <a type="button" class="btn btn-default btn-lg" href="{% url 'visit_this_week_csv' %}">
+            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Скачать CSV
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Рабочий телефон</th>
+                    <th>Домашний телефон</th>
+                    <th>E-mail</th>
+                    <th>Рассылка</th>
+                    <th>Статус</th>
+                    <th>Рекомендованная дата посещения</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for patient in patient_list %}
+                <tr>
+                    <th scope="row"><a href="{% url 'records_list' patient.id %}">{{ patient.id }}</a></th>
+                    <td>{{ patient.surname }}</td>
+                    <td>{{ patient.first_name }}</td>
+                    <td>{{ patient.father_name }}</td>
+                    <td>{{ patient.birth_day }}</td>
+                    <td>{{ patient.phone_home }}</td>
+                    <td>{{ patient.phone_mobile }}</td>
+                    <td>{{ patient.email }}</td>
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-{% if patient.allow_contacts %}ok-sign mailing-yes{% else %}ban-circle mailing-no{% endif %}" aria-hidden="true"></span>
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span>
+                    </td>
+                    <td>{{ patient.get_next_visit_date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -68,6 +68,12 @@ class Patient(models.Model):
         today = timezone.localtime(timezone.now())
         return today.year - self.birth_day.year
 
+    def get_next_visit_date(self):
+
+        record = Record.objects.filter(patient=self).order_by('-next_visit_date').first()
+        if record:
+            return record.next_visit_date
+
     def __unicode__(self):
 
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)

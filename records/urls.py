@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 from records.views import PatientList, CreatePatient, UpdatePatient, PatientBornTodayList, PatientCsvList, \
                           PatientBornTodayCsvList, RecordsList, CreateRecord, UpdateRecord, DetailRecord, \
-                          CreateAttachments, AgreementsList, AgreementDetail, AgreementCreate
+                          CreateAttachments, AgreementsList, AgreementDetail, AgreementCreate, PatientVisitThisWeek, \
+                          PatientVisitThisWeekCsvList
 
 from records.api import AttachmentsApiView, RecordsApiView
 
@@ -22,7 +23,12 @@ urlpatterns = patterns('',
                            login_required(UpdatePatient.as_view()), name='update_patient'),
 
                        url(r'^borntoday/$', login_required(PatientBornTodayList.as_view()), name='born_today'),
+                       url(r'^visit-this-week/$', login_required(PatientVisitThisWeek.as_view()),
+                           name='visit_this_week'),
+
                        url(r'^patients/csv/$', login_required(PatientCsvList.as_view()), name='patient_list_csv'),
+                       url(r'^visit-this-week/csv/$', login_required(PatientVisitThisWeekCsvList.as_view()),
+                           name='visit_this_week_csv'),
                        url(r'^borntoday/csv/$', login_required(PatientBornTodayCsvList.as_view()),
                            name='born_today_csv'),
 

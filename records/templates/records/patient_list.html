@@ -10,6 +10,7 @@
         </div>
     </div> 
 
+    <!-- дни рождения -->
     <div class="row">
         <div class="col-md-12">
         {% if born_today_cnt %}
@@ -17,6 +18,20 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <a href="{% url 'born_today' %}">
                 День рождение у <b>{{ born_today_cnt }}</b> пациент{{ born_today_cnt|rupluralize:"а,ов,ов" }}
+            </a>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <!-- рекомендуемая дата посещения -->
+    <div class="row">
+        <div class="col-md-12">
+        {% if visit_this_week_cnt %}
+        <div class="alert alert-warning" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <a href="{% url 'visit_this_week' %}">
+                На этой неделе <b>{{ visit_this_week_cnt }}</b> пациент{{ visit_this_week_cnt|rupluralize:"у,ам,ам" }} рекомендовано посещение
             </a>
         </div>
         {% endif %}
