@@ -219,9 +219,9 @@ app.controller('RecordCtrl', [
 
         $scope.loadAttachments = function(recordId) {
 
-            $scope.load_attachments = true
-
             if(recordId) {
+
+                $scope.load_attachments = true
 
                 Attachments.get({'id': recordId}, function(data) {
 
