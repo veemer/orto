@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from records.views import PatientList, CreatePatient, UpdatePatient, PatientBornTodayList, PatientCsvList, \
                           PatientBornTodayCsvList, RecordsList, CreateRecord, UpdateRecord, DetailRecord, \
                           CreateAttachments, AgreementsList, AgreementDetail, AgreementCreate, PatientVisitThisWeek, \
-                          PatientVisitThisWeekCsvList
+                          PatientVisitThisWeekCsvList, TemplateList, CreateTemplate, UpdateTemplate
 
 from records.api import AttachmentsApiView, RecordsApiView
 
@@ -46,6 +46,12 @@ urlpatterns = patterns('',
 
                        url(r'^print/$', login_required(TemplateView.as_view(template_name='records/print.html')),
                            name='print'),
+
+                       # Records Templates views
+
+                       url(r'^templates/$', TemplateList.as_view(), name='template_list'),
+                       url(r'^templates/(?P<pk>\d+)/$', UpdateTemplate.as_view(), name='template_edit'),
+                       url(r'^templates/create/$', CreateTemplate.as_view(), name='template_create'),
 
                        # Agreements views
 

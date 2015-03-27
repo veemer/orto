@@ -1,0 +1,20 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="com-md-12">
+            <h1>Шаблоны</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {%  for template in templates %}
+                <a href="{% url 'template_edit' template.id %}">{{ template }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{%  endblock %}

@@ -1,0 +1,28 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="com-md-12">
+            <h1>Редактирование шаблона</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <form method="POST" action="?" class="form-inline">
+                {% csrf_token %}
+
+                {% bootstrap_form form %}
+
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                        {% bootstrap_icon "ok" %} Сохранить
+                    </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

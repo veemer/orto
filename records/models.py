@@ -79,6 +79,17 @@ class Patient(models.Model):
         return u'{} {} {}'.format(self.first_name, self.father_name, self.surname)
 
 
+class RecordTemplate(models.Model):
+
+    doctor = models.ForeignKey(User)
+    name = models.CharField(max_length=128, verbose_name=u'Название')
+    content = models.TextField(verbose_name=u'Контент')
+
+    def __unicode__(self):
+
+        return self.name
+
+
 class Record(models.Model):
 
     patient = models.ForeignKey(Patient, verbose_name=u'Пациент')
@@ -95,6 +106,9 @@ class Record(models.Model):
     update_date = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name=u'Дата изменения')
     next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True,
                                        default=timezone.localtime(timezone.now()).date() + relativedelta(months=6))
+
+    template = models.ForeignKey(RecordTemplate, blank=True, null=True, verbose_name=u'Шаблон',
+                                 related_name='template_record')
 
     class Meta:
         ordering = ['-id']

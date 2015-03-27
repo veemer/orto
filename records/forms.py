@@ -2,7 +2,7 @@
 
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
-from records.models import Attachment, Patient, Record, Agreement
+from records.models import Attachment, Patient, RecordTemplate, Record, Agreement
 
 
 AttachmentFormset = modelformset_factory(Attachment, extra=5, exclude=['record', 'doctor'])
@@ -14,6 +14,14 @@ class PatientForm(ModelForm):
 
         model = Patient
         exclude = ['created_by']
+
+
+class RecordTemplateForm(ModelForm):
+
+    class Meta:
+
+        model = RecordTemplate
+        exclude = ['doctor']
 
 
 class RecordForm(ModelForm):
