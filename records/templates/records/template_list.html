@@ -4,15 +4,22 @@
 {% block content %}
 
     <div class="row">
-        <div class="com-md-12">
-            <h1>Шаблоны</h1>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-12">
+            <h1>Шаблоны</h1>
+
+            <a href="{% url 'template_create' %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> Новый шаблон
+            </a>
+
+            <hr>
+
             {%  for template in templates %}
-                <a href="{% url 'template_edit' template.id %}">{{ template }}</a>
+                <div class="panel panel-default">
+                  <div class="panel-heading"><a href="{% url 'template_edit' template.id %}">{{ template.name }}</a></div>
+                  <div class="panel-body">
+                    {{ template.content|linebreaksbr|truncatewords:100 }}
+                  </div>
+                </div>
             {% endfor %}
         </div>
     </div>

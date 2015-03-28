@@ -42,6 +42,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li><a href="{% url 'template_list' %}">Шаблоны</a></li>
                         <li class="active"><a href="#">{{ request.user.first_name }} ({{ request.user.username }})</a></li>
                     </ul/>
 
