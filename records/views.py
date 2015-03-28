@@ -231,7 +231,14 @@ class UpdateRecord(RecordTemplatesMixin, UpdateView):
         return reverse_lazy('records_list', args=(self.record.patient_id,))
 
     def get_context_data(self, **kwargs):
+
         context = super(UpdateRecord, self).get_context_data(**kwargs)
+
+        if self.record.template is None:
+            context['template_id'] = -1
+        else:
+            context['template_id'] = self.record.template.id
+
         context['record'] = self.record
         context['patient'] = self.record.patient
 

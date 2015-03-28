@@ -198,6 +198,10 @@ app.controller('RecordCtrl', [
                 params.id = $scope.record.id;
             }
 
+            if($scope.template.selected.value) {
+                $scope.record.template = $scope.template.selected.value;
+            }
+
             Record.save(params, $scope.record, function(data) {
                 $scope.record.id = data.record.id;
                 $scope.save_record = false;
@@ -255,6 +259,25 @@ app.controller('RecordCtrl', [
             $scope.loadRecord(recordId);
             $scope.loadAttachments(recordId);
         }
+
+        var initSelect = function() {
+            console.log($scope.currentTemplate);
+            console.log($scope.template.selected);
+        }
+
+        var initSelected = function() {
+            for(var i=0; i<$scope.options.length; i++) {
+                if($scope.options[i].value == $scope.currentTemplate) {
+                    $scope.template.selected = $scope.options[i];
+                }
+            }
+        }
+
+        $scope.$watch('options', function(newValue, oldValue) {
+            if(newValue) {
+                initSelected();
+            }
+        })
 
     }
 ]);
