@@ -206,6 +206,7 @@ class CreateRecord(RecordTemplatesMixin, CreateView):
 
         next_visit_date = timezone.localtime(timezone.now()).date() + relativedelta(months=6)
         context['next_visit_date'] = next_visit_date.strftime("%d.%m.%Y")
+        context['template_id'] = -1
 
         return context
 
