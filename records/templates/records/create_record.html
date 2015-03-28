@@ -20,7 +20,7 @@
         <div class="row" style="margin-top:20px">
             <div class="col-md=12">
                 <div role="tabpanel" data-ng-controller="RecordCtrl"
-                     data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; record.next_visit_date='{{ next_visit_date }}'; load({{ record.id }})">
+                     data-ng-init="record.patient={{ patient.id }}; record.doctor={{ request.user.id }}; record.next_visit_date='{{ next_visit_date }}'; load({{ record.id }}); options={{ templates }}">
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tabs-record" role="tablist">
@@ -73,6 +73,14 @@
                                               name="recommendations" placeholder="Рекомендации"
                                               rows="10" title="" data-ng-model="record.{{ form.recommendations.html_name }}"></textarea></div>
                                 
+                                <div class="form-group">
+                                    <label class="control-label">Шаблон</label>
+                                    <select class="form-control"
+                                            data-ng-model="template.selected"
+                                            data-ng-options="opt as opt.label for opt in options">
+                                    </select>
+                                </div>
+
                                 <!--{% bootstrap_field form.next_visit_date %}-->
                                 <div class="form-group">
                                     <label class="control-label" for="{{ form.next_visit_date.id_for_label }}">Рекомендуемая дата посещения</label>

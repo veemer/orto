@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+import json
 from django.http import HttpResponse
 
 from django.utils import timezone
@@ -14,7 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from dateutil.relativedelta import relativedelta
 
-from records.models import Patient, Record, Agreement, RecordTemplate
+from records.models import Patient, Record, Agreement, RecordTemplate, RecordTemplate
 from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm, RecordTemplateForm
 
 
@@ -174,7 +175,20 @@ class RecordsList(ListView):
         return context
 
 
-class CreateRecord(CreateView):
+class RecordTemplatesMixin(object):
+
+    def get_context_data(self, **kwargs):
+
+        context = super(RecordTemplatesMixin, self).get_context_data(**kwargs)
+        templates = RecordTemplate.objects.filter(doctor=self.request.user)
+        templates_list = [{'value': template.id, 'label': template.name} for template in templates]
+
+        context['templates'] = json.dumps(templates_list)
+
+        return context
+
+
+class CreateRecord(RecordTemplatesMixin, CreateView):
 
     form_class = RecordForm
     template_name = 'records/create_record.html'
@@ -203,7 +217,7 @@ class CreateRecord(CreateView):
         return super(CreateRecord, self).form_valid(form)
 
 
-class UpdateRecord(UpdateView):
+class UpdateRecord(RecordTemplatesMixin, UpdateView):
 
     model = Record
     form_class = RecordForm

@@ -184,6 +184,10 @@ app.controller('RecordCtrl', [
         $scope.save_record = false;
         $scope.load_attachments = false
 
+        $scope.template = {
+            selected: {}
+        }
+
         $scope.save = function() {
 
             $scope.save_record = true;
