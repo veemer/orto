@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from dateutil.relativedelta import relativedelta
 
-from records.models import Patient, Record, Agreement, RecordTemplate, RecordTemplate
+from records.models import Patient, Record, Agreement, RecordTemplate
 from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm, RecordTemplateForm
 
 
