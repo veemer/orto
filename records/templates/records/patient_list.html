@@ -102,7 +102,8 @@
                                 <small>
                                     <a href="{% url 'records_list' patient.id %}">Записи</a> |
                                     <a href="{% url 'update_patient' patient.id %}">Редактировать</a> |
-                                    <a href="{% url 'agreements_list' patient.id %}">Договоры</a>
+                                    <a href="{% url 'agreements_list' patient.id %}">Договоры</a> |
+                                    <a href="{% url 'physio_agreements_list' patient.id %}">ЛФК Договоры</a>
                                 </small>
                             </td>
                         </tr>

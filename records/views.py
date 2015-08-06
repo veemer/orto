@@ -15,8 +15,9 @@ from django.core.urlresolvers import reverse_lazy
 
 from dateutil.relativedelta import relativedelta
 
-from records.models import Patient, Record, Agreement, RecordTemplate
-from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm, RecordTemplateForm
+from records.models import Patient, Record, Agreement, RecordTemplate, PhysioAgreement
+from records.forms import AttachmentFormset, PatientForm, RecordForm, AgreementForm, \
+                          PhysioAgreementForm, RecordTemplateForm
 
 
 # Patients
@@ -295,6 +296,12 @@ class AgreementsList(ListView):
         return context
 
 
+class PhysioAgreementsList(AgreementsList):
+
+    model = PhysioAgreement
+    template_name = 'records/physio_agreements_list.html'
+
+
 class AgreementCreate(CreateView):
 
     model = Agreement
@@ -324,6 +331,16 @@ class AgreementCreate(CreateView):
         return context
 
 
+class PhysioAgreementCreate(AgreementCreate):
+
+    model = PhysioAgreement
+    form_class = PhysioAgreementForm
+    template_name = 'records/physio_agreement_create.html'
+
+    def get_success_url(self):
+        return reverse_lazy('physio_agreements_list', args=(self.patient.pk,))
+
+
 class AgreementDetail(DetailView):
 
     model = Agreement
@@ -338,6 +355,11 @@ class AgreementDetail(DetailView):
             context['print'] = True
 
         return context
+
+
+class PhysioAgreementDetail(AgreementDetail):
+
+    model = PhysioAgreement
 
 
 # Records Templates

@@ -1,0 +1,52 @@
+{% extends 'records/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="com-md-12">
+            <h1>Договоры пациента <small>"{{ patient }}" <span class="glyphicon glyphicon-user status status-{{patient.status}}-active"></span></small></h1>
+
+            <a href="{% url 'patient_list' %}" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-arrow-left"></span> К списку пациентов
+            </a>
+
+            <a href="{% url 'physio_agreement_create' patient.id %}" type="button" class="btn btn-primary">Создать договор</a>
+
+        </div>
+    </div>
+
+
+    {% if agreements_list %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Заказчик</th>
+                    <th>Дата создания</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agreement in agreements_list %}
+                <tr>
+                    <th scope="row"><a href="{% url 'physio_agreement_detail' agreement.id %}">{{ agreement.get_number }}</a></th>
+                    <td>{{ agreement.customer }}</td>
+                    <td>{{ agreement.date }}</td>
+                    <td>{{ agreement.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if paginator.num_pages > 1 %}
+            {% bootstrap_pagination page_obj %}
+        {% endif %}
+
+    {% else %}
+        <div class="jumbotron" style="margin-top: 20px">
+            <h2 class="text-center">Для пациента еще не создан ни один договор</h2>
+        </div>
+    {% endif %}
+
+{% endblock %}

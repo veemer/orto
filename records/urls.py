@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from records.views import PatientList, CreatePatient, UpdatePatient, PatientBornTodayList, PatientCsvList, \
                           PatientBornTodayCsvList, RecordsList, CreateRecord, UpdateRecord, DetailRecord, \
                           CreateAttachments, AgreementsList, AgreementDetail, AgreementCreate, PatientVisitThisWeek, \
-                          PatientVisitThisWeekCsvList, TemplateList, CreateTemplate, UpdateTemplate
+                          PatientVisitThisWeekCsvList, TemplateList, CreateTemplate, UpdateTemplate, \
+                          PhysioAgreementsList, PhysioAgreementCreate, PhysioAgreementDetail
 
 from records.api import AttachmentsApiView, RecordsApiView
 
@@ -61,6 +62,15 @@ urlpatterns = patterns('',
                            login_required(AgreementDetail.as_view()), name='agreement_detail'),
                        url(r'^agreements/(?P<pk>\d+)/create/$',
                            login_required(AgreementCreate.as_view()), name='agreement_create'),
+
+                       # PhysioAgreements views
+
+                       url(r'^physio_agreements/(?P<pk>\d+)/$',
+                           login_required(PhysioAgreementsList.as_view()), name='physio_agreements_list'),
+                       url(r'^physio_agreements/(?P<pk>\d+)/detail/$',
+                           login_required(PhysioAgreementDetail.as_view()), name='physio_agreement_detail'),
+                       url(r'^physio_agreements/(?P<pk>\d+)/create/$',
+                           login_required(PhysioAgreementCreate.as_view()), name='physio_agreement_create'),
 
                        # Accounts views
 
