@@ -170,7 +170,7 @@ class PhysioAgreement(models.Model):
 
     procedure_price = models.IntegerField(verbose_name=u'Cумма за каждое занятие')
     price = models.IntegerField(verbose_name=u'Общая стоимость')
-    price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
+    price_words = models.CharField(max_length=128, verbose_name=u'Общая стоимость прописью')
 
     def get_number(self):
         return u'{}/{}'.format(self.id, self.date.year)
