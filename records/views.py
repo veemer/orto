@@ -360,6 +360,7 @@ class AgreementDetail(DetailView):
 class PhysioAgreementDetail(AgreementDetail):
 
     model = PhysioAgreement
+    template_name = 'records/physio_agreement_detail.html'
 
 
 # Records Templates
