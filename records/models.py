@@ -150,3 +150,30 @@ class Agreement(models.Model):
 
     def __unicode__(self):
         return u'{}:{}'.format(self.patient, self.get_number())
+
+
+class PhysioAgreement(models.Model):
+
+    date = models.DateField(auto_now_add=True, verbose_name=u'Дата создания')
+
+    patient = models.ForeignKey(Patient, verbose_name=u'Пациент')
+
+    customer = models.CharField(max_length=128, verbose_name=u'Заказчик')
+    consumer = models.CharField(max_length=128, verbose_name=u'Потребитель')
+    document = models.CharField(max_length=128, verbose_name=u'Пасспорт (иной документа)')
+
+    massage = models.BooleanField(default=False, verbose_name=u'Медицинский массаж')
+    physical = models.BooleanField(default=False, verbose_name=u'Занятия лечебной физкультурой')
+
+    num_of_courses = models.IntegerField(verbose_name=u'Количество курсов')
+    num_of_procedures = models.IntegerField(verbose_name=u'Общее количество занятийй')
+
+    procedure_price = models.IntegerField(verbose_name=u'Cумма за каждое занятие')
+    price = models.IntegerField(verbose_name=u'Общая стоимость')
+    price_words = models.CharField(max_length=128, verbose_name=u'Сумма прописью')
+
+    def get_number(self):
+        return u'{}/{}'.format(self.id, self.date.year)
+
+    def __unicode__(self):
+        return u'{}:{}'.format(self.patient, self.get_number())
