@@ -172,6 +172,8 @@ class PhysioAgreement(models.Model):
     price = models.IntegerField(verbose_name=u'Общая стоимость')
     price_words = models.CharField(max_length=128, verbose_name=u'Общая стоимость прописью')
 
+    responsible = models.CharField(max_length=128, verbose_name=u'Ответственный Исполнитель')
+
     def get_number(self):
         return u'{}/{}'.format(self.id, self.date.year)
 
