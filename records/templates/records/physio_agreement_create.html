@@ -18,15 +18,23 @@
     <form method="POST" action="?" class="form">
         {% csrf_token %}
 
-        <div class="form-group">
-            <label class="control-label" for="{{ form.customer.id_for_label }}">Заказчик</label>
-            <input class="form-control" id="{{ form.customer.id_for_label }}" maxlength="128" name="{{ form.customer.html_name }}" placeholder="Заказчик" required="required" title="" type="text">
-        </div>
+        {% bootstrap_field form.customer %}
 
         <div class="form-group">
             <label class="control-label" for="{{ form.consumer.id_for_label }}">Потребитель</label>
             <input class="form-control" id="{{ form.consumer.id_for_label }}" maxlength="128" name="{{ form.consumer.html_name }}" placeholder="Потребитель" required="required" title="" type="text" value="{{ patient }}">
         </div>
+
+        <div class="form-group">
+            <label class="control-label" for="{{ form.document.id_for_label }}">Пасспорт (иной документ)</label>
+            <textarea class="form-control" id="{{ form.document.id_for_label }}" maxlength="128" name="{{ form.document.html_name }}" placeholder="Пасспорт (иной документа)" required="required" title="">
+{% if patient.has_passport %}Паспорт серия {{ patient.passport_seria }} № {{ patient.passport_number}} Выдан {{ patient.passport_issued_by }}
+{% else %}Свидетельство о рождении номер {{ patient.birth_cert_number }}
+{% endif %}
+            </textarea>
+        </div>
+
+        {% bootstrap_field form.responsible %}
 
         {% bootstrap_field form.massage %}
         {% bootstrap_field form.physical %}
@@ -37,15 +45,6 @@
         {% bootstrap_field form.procedure_price %}
         {% bootstrap_field form.price %}
         {% bootstrap_field form.price_words %}
-
-        <div class="form-group">
-            <label class="control-label" for="{{ form.document.id_for_label }}">Пасспорт (иной документа)</label>
-            <textarea class="form-control" id="{{ form.document.id_for_label }}" maxlength="128" name="{{ form.document.html_name }}" placeholder="Пасспорт (иной документа)" required="required" title="">
-{% if patient.has_passport %}Паспорт серия {{ patient.passport_seria }} № {{ patient.passport_number}} Выдан {{ patient.passport_issued_by }}
-{% else %}Свидетельство о рождении номер {{ patient.birth_cert_number }}
-{% endif %}
-            </textarea>
-        </div>
 
         {% buttons %}
             <button type="submit" class="btn btn-primary">
