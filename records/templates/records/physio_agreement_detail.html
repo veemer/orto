@@ -116,12 +116,12 @@
                     <p class="c10"><span class="c3 c16 c4">Заказчик:</span></p>
                     <p class="c0"><span class="c3 c16 c4"></span></p>
                     <p class="c0"><span class="c3 c16 c4"></span></p>
-                    <p class="c10"><span class="c3 c16 c4">___________________/____________________________</span></p>
+                    <p class="c10"><span class="c3 c16 c4">___________________/<span class="underline">{{ agreement.customer }}</span></span></p>
                     <p class="c10"><span class="c3 c16 c4">(подпись)                        (расшифровка)</span></p>
                     <p class="c10"><span class="c3 c16 c4">Потребитель:</span></p>
                     <p class="c0"><span class="c3 c16 c4"></span></p>
                     <p class="c0"><span class="c3 c16 c4"></span></p>
-                    <p class="c10"><span class="c3 c16 c4">___________________/_______________________________</span></p>
+                    <p class="c10"><span class="c3 c16 c4">___________________/<span class="underline">{{ agreement.consumer }}</span></span></p>
                     <p class="c10"><span class="c3 c16 c4">(подпись)                        (расшифровка)</span></p>
                 </td>
             </tr>
@@ -130,16 +130,16 @@
     <hr style="page-break-before:always;display:none;">
     <p class="c29"><span class="c3"></span></p>
     <p class="c24 c36"><span class="c2">Приложение №1,2</span></p>
-    <p class="c24 c36"><span class="c2">к Договору №___  </span></p>
+    <p class="c24 c36"><span class="c2">к Договору №<span class="underline">{{ agreement.get_number }}</span>  </span></p>
     <p class="c24 c36"><span class="c2">на оказание платных</span></p>
     <p class="c24 c36"><span class="c2">медицинских услуг</span></p>
-    <p class="c24 c36"><span class="c2">от «___»_______2015 г.</span></p>
+    <p class="c24 c36"><span class="c2">от «<span class="underline"> {{ agreement.date.day }} </span>»<span class="underline"> {{ agreement.date|date:"M" }} </span> {{ agreement.date|date:"Y" }} г.</span></p>
     <p class="c9 c36"><span class="c3 c4"></span></p>
     <p class="c22"><span class="c19">Соглашение об объеме и условиях оказываемых платных медицинских услуг (информированное согласие)</span></p>
     <p class="c9"><span class="c3"></span></p>
-    <p class="c24"><span class="c2">г. Ростов-на-Дону                                                                                 «___»__________20__г.</span></p>
+    <p class="c24"><span class="c2">г. Ростов-на-Дону <span class="fr">«<span class="underline"> {{ agreement.date.day }} </span>»<span class="underline"> {{ agreement.date|date:"M" }} </span> <span class="underline"> {{ agreement.date|date:"Y" }} </span>г.</span></span></p>
     <p class="c9"><span class="c3"></span></p>
-    <p class="c6 c11"><span class="c3">Я,  __________________________________________________________________________________________________, в рамках договора об оказании платных медицинских услуг, желаю получить платные медицинские услуги в ООО «ИнтерМед-Юг», при этом мне разъяснено и мною осознано следующее. </span></p>
+    <p class="c6 c11"><span class="c3">Я,  <span class="underline">{{ agreement.consumer }}</span>, в рамках договора об оказании платных медицинских услуг, желаю получить платные медицинские услуги в ООО «ИнтерМед-Юг», при этом мне разъяснено и мною осознано следующее. </span></p>
     <p class="c6 c11"><span class="c3">1. Я, получив от сотрудников ООО «ИнтерМед-Юг» полную информацию о возможности и условиях предоставления медицинских услуг в ООО «ИнтерМед-Юг», даю свое согласие на оказание платных медицинских услуг и готов(а) их оплатить. </span></p>
     <p class="c6 c11"><span class="c3">2.  Мне разъяснено и я осознал(а), что проводимое лечение мне не гарантирует 100% результат.</span></p>
     <p class="c6 c11"><span class="c3">3. Я согласен(а) с тем, что используемая технология медицинской помощи не может полностью исключить вероятность возникновения побочных эффектов и осложнений, обусловленных биологическими особенностями организма, и в случае, когда услуга оказана с соблюдением всех необходимых требований, ООО «ИнтерМед-Юг» не несет ответственности за их возникновение. </span></p>
