@@ -160,7 +160,7 @@ class PhysioAgreement(models.Model):
 
     customer = models.CharField(max_length=128, verbose_name=u'Заказчик')
     consumer = models.CharField(max_length=128, verbose_name=u'Потребитель')
-    document = models.CharField(max_length=128, verbose_name=u'Пасспорт (иной документа)')
+    document = models.CharField(max_length=128, verbose_name=u'Пасспорт (иной документ)')
 
     massage = models.BooleanField(default=False, verbose_name=u'Медицинский массаж')
     physical = models.BooleanField(default=False, verbose_name=u'Занятия лечебной физкультурой')
@@ -169,7 +169,7 @@ class PhysioAgreement(models.Model):
     num_of_courses_str = models.CharField(max_length=128, verbose_name=u'Количество курсов (прописью)')
 
     num_of_procedures = models.IntegerField(verbose_name=u'Общее количество занятийй')
-    num_of_procedures_str = models.CharField(max_length=128, verbose_name=u'Общее количество занятийй (прописью)')
+    num_of_procedures_str = models.CharField(max_length=128, verbose_name=u'Общее количество занятий (прописью)')
 
     procedure_price = models.IntegerField(verbose_name=u'Cумма за каждое занятие')
     price = models.IntegerField(verbose_name=u'Общая стоимость')
