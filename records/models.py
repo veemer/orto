@@ -164,9 +164,12 @@ class PhysioAgreement(models.Model):
 
     massage = models.BooleanField(default=False, verbose_name=u'Медицинский массаж')
     physical = models.BooleanField(default=False, verbose_name=u'Занятия лечебной физкультурой')
+    paraffin = models.BooleanField(default=False, verbose_name=u'Парафинотерапия')
+    electrophoresis = models.BooleanField(default=False, verbose_name=u'Электрофорез')
+    magnetotherapy = models.BooleanField(default=False, verbose_name=u'Магнитотерапия')
 
     num_of_courses = models.IntegerField(verbose_name=u'Количество курсов')
-    num_of_courses_str = models.CharField(max_length=128, verbose_name=u'Количество курсов (прописью)')
+    num_of_courses_str = models.CharField(max_length=128, verbose_name=u'Количество курсов (прописью)22')
 
     num_of_procedures = models.IntegerField(verbose_name=u'Общее количество занятийй')
     num_of_procedures_str = models.CharField(max_length=128, verbose_name=u'Общее количество занятий (прописью)')

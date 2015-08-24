@@ -18,6 +18,8 @@
     <form method="POST" action="?" class="form">
         {% csrf_token %}
 
+        {{ form.errors }}
+
         {% bootstrap_field form.customer %}
 
         <div class="form-group">
@@ -38,9 +40,15 @@
 
         {% bootstrap_field form.massage %}
         {% bootstrap_field form.physical %}
+        {% bootstrap_field form.paraffin %}
+        {% bootstrap_field form.electrophoresis %}
+        {% bootstrap_field form.magnetotherapy %}
 
         {% bootstrap_field form.num_of_courses %}
+        {% bootstrap_field form.num_of_courses_str %}
+
         {% bootstrap_field form.num_of_procedures %}
+        {% bootstrap_field form.num_of_procedures_str %}
 
         {% bootstrap_field form.procedure_price %}
         {% bootstrap_field form.price %}
