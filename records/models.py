@@ -156,6 +156,8 @@ class Agreement(models.Model):
 
 class PhysioAgreement(models.Model):
 
+    number = models.CharField(max_length=128, verbose_name=u'Номер договора')
+
     date = models.DateField(auto_now_add=True, verbose_name=u'Дата создания')
 
     patient = models.ForeignKey(Patient, verbose_name=u'Пациент')
@@ -183,7 +185,7 @@ class PhysioAgreement(models.Model):
     responsible = models.CharField(max_length=128, verbose_name=u'Ответственный Исполнитель')
 
     def get_number(self):
-        return u'{}/{}'.format(self.id, self.date.year)
+        return self.number
 
     def __unicode__(self):
         return u'{}:{}'.format(self.patient, self.get_number())
