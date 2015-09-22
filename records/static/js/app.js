@@ -260,6 +260,10 @@ app.controller('RecordCtrl', [
             $scope.loadAttachments(recordId);
         }
 
+        $scope.templateChange = function() {
+            console.log($scope.template.selected.content);
+        }
+
         var initSelect = function() {
             console.log($scope.currentTemplate);
             console.log($scope.template.selected);

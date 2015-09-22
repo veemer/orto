@@ -182,7 +182,9 @@ class RecordTemplatesMixin(object):
 
         context = super(RecordTemplatesMixin, self).get_context_data(**kwargs)
         templates = RecordTemplate.objects.filter(doctor=self.request.user)
-        templates_list = [{'value': template.id, 'label': template.name} for template in templates]
+        templates_list = [
+            {'value': template.id, 'label': template.name, 'content': template.content} for template in templates
+        ]
 
         context['templates'] = json.dumps(templates_list)
 

@@ -77,7 +77,8 @@
                                     <label class="control-label">Шаблон</label>
                                     <select class="form-control"
                                             data-ng-model="template.selected"
-                                            data-ng-options="opt as opt.label for opt in options">
+                                            data-ng-options="opt as opt.label for opt in options"
+                                            data-ng-change="templateChange()">
                                     </select>
                                 </div>
 
