@@ -13,3 +13,8 @@ img.record-detail-attach {
 .container-main {
     margin: -20px;
 }
+
+.container-main  {
+    padding: 10mm!important;
+    font-size: 8px;
+}
