@@ -83,7 +83,8 @@ class RecordTemplate(models.Model):
 
     doctor = models.ForeignKey(User)
     name = models.CharField(max_length=128, verbose_name=u'Название')
-    content = models.TextField(verbose_name=u'Контент')
+    diagnosis = models.TextField(verbose_name=u'Диагноз')
+    recommendations = models.TextField(verbose_name=u'Рекомендации')
 
     def __unicode__(self):
 

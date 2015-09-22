@@ -19,8 +19,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="{{ form.content.id_for_label }}">Контент</label>
-                    <textarea class="form-control" rows="15" name="{{ form.content.html_name }}">{{ form.content.value }}</textarea>
+                    <label for="{{ form.diagnosis.id_for_label }}">Диагноз</label>
+                    <textarea class="form-control" rows="15" name="{{ form.diagnosis.html_name }}">{{ form.diagnosis.value }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.recommendations.id_for_label }}">Рекомендации</label>
+                    <textarea class="form-control" rows="15" name="{{ form.recommendations.html_name }}">{{ form.recommendations.value }}</textarea>
                 </div>
 
                 <button type="submit" class="btn btn-default">Сохранить</button></button>

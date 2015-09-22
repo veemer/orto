@@ -57,6 +57,16 @@
                                 </div>
 
                             </div>
+
+                            <div class="form-group">
+                                <label class="control-label">Шаблон</label>
+                                <select class="form-control"
+                                        data-ng-model="template.selected"
+                                        data-ng-options="opt as opt.label for opt in options"
+                                        data-ng-change="templateChange()">
+                                </select>
+                            </div>
+
                             <div role="tabpanel" class="tab-pane" id="treatment">
                                 <!--{% bootstrap_field form.diagnosis %}-->
                                 <div class="form-group">
@@ -72,15 +82,6 @@
                                     <textarea class="form-control" cols="40" id="{{ form.recommendations.id_for_label }}"
                                               name="recommendations" placeholder="Рекомендации"
                                               rows="10" title="" data-ng-model="record.recommendations"></textarea></div>
-                                
-                                <div class="form-group">
-                                    <label class="control-label">Шаблон</label>
-                                    <select class="form-control"
-                                            data-ng-model="template.selected"
-                                            data-ng-options="opt as opt.label for opt in options"
-                                            data-ng-change="templateChange()">
-                                    </select>
-                                </div>
 
                                 <!--{% bootstrap_field form.next_visit_date %}-->
                                 <div class="form-group">
