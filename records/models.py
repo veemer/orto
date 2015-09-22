@@ -134,6 +134,7 @@ class Attachment(models.Model):
 
 class Agreement(models.Model):
 
+    number = models.CharField(max_length=128, verbose_name=u'Номер документа')
     patient = models.ForeignKey(Patient, verbose_name=u'Пациента')
     date = models.DateField(auto_now_add=True, verbose_name=u'Дата создания')
     price = models.IntegerField(verbose_name=u'Сумма')
@@ -147,7 +148,7 @@ class Agreement(models.Model):
         ordering = ['-id']
 
     def get_number(self):
-        return u'{}/{}'.format(self.id, self.date.year)
+        return self.number
 
     def __unicode__(self):
         return u'{}:{}'.format(self.patient, self.get_number())
