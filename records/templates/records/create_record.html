@@ -63,7 +63,7 @@
                                     <label class="control-label" for="{{ form.diagnosis.id_for_label }}">Диагноз</label>
                                     <textarea class="form-control" cols="40" id="{{ form.diagnosis.id_for_label }}" 
                                               name="{{ form.diagnosis.html_name }}" placeholder="Диагноз"
-                                              rows="5" title="" data-ng-model="record.{{ form.diagnosis.html_name }}"></textarea>
+                                              rows="5" title="" data-ng-model="record.diagnosis"></textarea>
                                 </div>
                                 
                                 <!--{% bootstrap_field form.recommendations %}-->
@@ -71,7 +71,7 @@
                                     <label class="control-label" for="{{ form.recommendations.id_for_label }}">Рекомендации</label>
                                     <textarea class="form-control" cols="40" id="{{ form.recommendations.id_for_label }}"
                                               name="recommendations" placeholder="Рекомендации"
-                                              rows="10" title="" data-ng-model="record.{{ form.recommendations.html_name }}"></textarea></div>
+                                              rows="10" title="" data-ng-model="record.recommendations"></textarea></div>
                                 
                                 <div class="form-group">
                                     <label class="control-label">Шаблон</label>

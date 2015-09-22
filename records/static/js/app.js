@@ -262,6 +262,8 @@ app.controller('RecordCtrl', [
 
         $scope.templateChange = function() {
             console.log($scope.template.selected.content);
+            $scope.record.diagnosis = $scope.template.selected.content;
+            $scope.record.recommendations = $scope.template.selected.content;
         }
 
         var initSelect = function() {
