@@ -108,8 +108,8 @@ class Record(models.Model):
     next_visit_date = models.DateField(verbose_name=u'Рекомендуемая дата посещения', blank=True, null=True,
                                        default=timezone.localtime(timezone.now()).date() + relativedelta(months=6))
 
-    template = models.OneToOneField(RecordTemplate, blank=True, null=True, verbose_name=u'Шаблон',
-                                    related_name='template_record')
+    template = models.ForeignKey(RecordTemplate, blank=True, null=True, verbose_name=u'Шаблон',
+                                 related_name='template_record')
 
     class Meta:
         ordering = ['-id']
