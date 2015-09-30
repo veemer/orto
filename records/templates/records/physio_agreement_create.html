@@ -22,11 +22,19 @@
 
         {% bootstrap_field form.number %}
 
+        <!--
         {% bootstrap_field form.customer %}
+        -->
+
+        <div class="form-group">
+            <label class="control-label" for="{{ form.customer.id_for_label }}">Заказчик</label>
+            <input class="form-control" id="{{ form.customer.id_for_label }}" maxlength="128" name="{{ form.customer.html_name }}" placeholder="Заказчик" required="required" title="" type="text" value="{{ patient }}">
+        </div>
+
 
         <div class="form-group">
             <label class="control-label" for="{{ form.consumer.id_for_label }}">Потребитель</label>
-            <input class="form-control" id="{{ form.consumer.id_for_label }}" maxlength="128" name="{{ form.consumer.html_name }}" placeholder="Потребитель" required="required" title="" type="text" value="{{ patient }}">
+            <input class="form-control" id="{{ form.consumer.id_for_label }}" maxlength="128" name="{{ form.consumer.html_name }}" placeholder="Потребитель" required="required" title="" type="text">
         </div>
 
         <div class="form-group">
