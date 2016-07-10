@@ -18,6 +18,8 @@
     <form method="POST" action="?" class="form">
         {% csrf_token %}
 
+        {{ form.errors }}
+
         <div class="form-group">
             <label class="control-label" for="{{ form.number.id_for_label }}">Номер</label>
             <input class="form-control" id="{{ form.number.id_for_label }}" name="{{ form.number.html_name }}" placeholder="Номер" required="required" title="" type="text">
@@ -41,6 +43,16 @@
         <div class="form-group">
             <label class="control-label" for="{{ form.consumer.id_for_label }}">Потребитель</label>
             <input class="form-control" id="{{ form.consumer.id_for_label }}" maxlength="128" name="{{ form.consumer.html_name }}" placeholder="Потребитель" required="required" title="" type="text" value="{{ patient }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="{{ form.address.id_for_label }}">Адрес</label>
+            <input class="form-control" id="{{ form.address.id_for_label }}" maxlength="128" name="{{ form.address.html_name }}" placeholder="Адрес" required="required" title="" type="text" value="{{ patient.address }}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="{{ form.phone.id_for_label }}">Телефон</label>
+            <input class="form-control" id="{{ form.phone.id_for_label }}" maxlength="128" name="{{ form.phone.html_name }}" placeholder="Телефон" required="required" title="" type="text" value="{{ patient.phone_mobile }}">
         </div>
 
         <div class="form-group">

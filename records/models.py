@@ -144,6 +144,9 @@ class Agreement(models.Model):
     consumer = models.CharField(max_length=128, verbose_name=u'Потребитель')
     document = models.CharField(max_length=128, verbose_name=u'Пасспорт (иной документа)')
 
+    address = models.TextField(default='')
+    phone = models.CharField(default='', max_length=128)
+
     class Meta:
         ordering = ['-id']
 
