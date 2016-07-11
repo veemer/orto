@@ -22,3 +22,11 @@ img.record-detail-attach {
 .agreemtnt-detail-wrapper {
     margin-top: -50px;
 }
+
+.agreemtnt-detail-wrapper table {
+    width: 100%;
+}
+
+.agreemtnt-detail-wrapper table td {
+    width: 50%;
+}
