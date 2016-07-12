@@ -37,7 +37,7 @@ class PatientList(ListView):
         if q:
             qs = qs.filter(surname__icontains=q)
 
-        return qs
+        return qs.order_by('-id')
 
     def get_context_data(self, **kwargs):
 
